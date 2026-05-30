@@ -3,6 +3,8 @@ version: 2.0
 project "spec-coverage" version "1.0.0":
   parameter $environment as string from ["dev", "staging", "production"] defaults to "dev"
   set platforms as list to ["linux", "darwin", "windows"]
+  include snippets, templates from "shared/docker.drun" as docker
+  include from drunhub "ops/kubernetes" as k8s
 
   shell config:
     darwin:
@@ -25,11 +27,43 @@ task "deploy" means "Exercise grammar coverage":
   use snippet "show-context"
 
   let $config = { port: 8080, host: "localhost" }
+  capture from shell "whoami" as $current_user
+
+  capture from shell as $build_info:
+    echo "User: {$current_user}"
+    echo "Date: $(date)"
 
   for each $platform in $globals.platforms:
     info "Platform {$platform}"
+
+  if env HOME exists and is not empty:
+    info "Home is configured"
 
   if $environment is not empty:
     call task "docker-build" with tag="{$environment}"
   otherwise:
     warn "No environment provided"
+
+  get "https://api.example.com/status" with header "Accept: application/json" timeout "30s"
+  download "https://example.com/file.zip" to "downloads/file.zip" allow overwrite
+  wait for service at "https://app.example.com/health" to be ready timeout "60s"
+  test connection to "localhost" on port 8080 timeout "5s"
+  ping host "example.com" timeout "3s"
+
+service "api" in "./services/api":
+  repository:
+    url "https://github.com/acme/api.git"
+  build:
+    required true
+    command "npm install && npm run build"
+  health check:
+    type "http"
+    endpoint "http://localhost:8080/health"
+
+orchestrate "full_stack":
+  services ["api"]
+  strategy "sequential"
+  circuit_breaker true
+
+task "resume":
+  orchestrate "full_stack" up starting from "api"

@@ -1,0 +1,73 @@
+{
+  "file": "samples/orchestration-health.drun",
+  "assertions": [
+    {
+      "line": 3,
+      "column": 1,
+      "scopes": [
+        "source.drun",
+        "meta.service.definition.drun",
+        "keyword.declaration.drun"
+      ]
+    },
+    {
+      "line": 5,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "entity.other.attribute-name.orchestration.drun"
+      ]
+    },
+    {
+      "line": 8,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "entity.other.attribute-name.orchestration.drun"
+      ]
+    },
+    {
+      "line": 10,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "entity.other.attribute-name.orchestration.drun"
+      ]
+    },
+    {
+      "line": 19,
+      "column": 1,
+      "scopes": [
+        "source.drun",
+        "meta.orchestration.definition.drun",
+        "support.type.action.drun"
+      ]
+    },
+    {
+      "line": 20,
+      "column": 3,
+      "scopes": [
+        "source.drun",
+        "entity.other.attribute-name.orchestration.drun"
+      ]
+    },
+    {
+      "line": 26,
+      "column": 3,
+      "scopes": [
+        "source.drun",
+        "meta.orchestration.action.drun",
+        "support.type.action.drun"
+      ]
+    },
+    {
+      "line": 26,
+      "column": 33,
+      "scopes": [
+        "source.drun",
+        "meta.orchestration.action.drun",
+        "keyword.operator.word.drun"
+      ]
+    }
+  ]
+}

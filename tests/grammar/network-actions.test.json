@@ -1,0 +1,67 @@
+{
+  "file": "samples/network-actions.drun",
+  "assertions": [
+    {
+      "line": 4,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "support.function.builtin.drun"
+      ]
+    },
+    {
+      "line": 5,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "meta.http.action.drun",
+        "support.type.action.drun"
+      ]
+    },
+    {
+      "line": 6,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "meta.http.action.drun",
+        "support.type.action.drun"
+      ]
+    },
+    {
+      "line": 7,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "meta.download.action.drun",
+        "support.type.action.drun"
+      ]
+    },
+    {
+      "line": 8,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "meta.network.wait.drun",
+        "support.type.action.drun"
+      ]
+    },
+    {
+      "line": 9,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "meta.network.test.drun",
+        "support.type.action.drun"
+      ]
+    },
+    {
+      "line": 10,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "meta.network.ping.drun",
+        "support.type.action.drun"
+      ]
+    }
+  ]
+}

@@ -21,6 +21,15 @@
     "type": "git",
     "url": "https://github.com/phillarmonic/drun-vscode"
   },
+  "scripts": {
+    "validate:json": "node ./scripts/validate-json.mjs",
+    "test:grammar": "node ./scripts/test-grammar.mjs",
+    "test": "node ./scripts/validate-json.mjs && node ./scripts/test-grammar.mjs"
+  },
+  "devDependencies": {
+    "vscode-oniguruma": "^2.0.1",
+    "vscode-textmate": "^9.2.0"
+  },
   "contributes": {
     "languages": [
       {

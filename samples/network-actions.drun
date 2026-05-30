@@ -1,0 +1,10 @@
+version: 2.0
+
+task "network-actions":
+  if env HOME exists and is not empty:
+    get "https://api.example.com/status" with header "Accept: application/json" timeout "30s"
+    post "https://api.example.com/deploy" content type json with body "version=1.2.3"
+    download "https://example.com/file.zip" to "downloads/file.zip" allow overwrite
+    wait for service at "https://app.example.com/health" to be ready timeout "60s"
+    test connection to "localhost" on port 8080 timeout "5s"
+    ping host "example.com" timeout "3s"

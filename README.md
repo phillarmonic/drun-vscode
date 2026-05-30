@@ -27,6 +27,19 @@ VS Code language support for the [Drun](https://github.com/phillarmonic/drun) au
 
 Open this repo in VS Code and run the `Run Drun Extension` launch configuration. It starts an Extension Development Host and opens [samples/spec-coverage.drun](/Users/andy/repos/phillarmonic/drun-vscode/samples/spec-coverage.drun) for a quick highlighting check.
 
+### Test locally
+
+Install dev dependencies with `pnpm install`, then run:
+
+```bash
+pnpm test
+```
+
+That runs:
+
+- JSON validation for extension metadata and grammar files
+- TextMate grammar assertions from [tests/grammar/spec-coverage.test.json](/Users/andy/repos/phillarmonic/drun-vscode/tests/grammar/spec-coverage.test.json) against [samples/spec-coverage.drun](/Users/andy/repos/phillarmonic/drun-vscode/samples/spec-coverage.drun)
+
 ### Sample
 
 ```drun
