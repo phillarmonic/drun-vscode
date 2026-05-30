@@ -1,2 +1,44 @@
-# drun-vscode
-The Drun automation language's official VS Code extension
+# Drun Language Support
+
+VS Code language support for the [Drun](https://github.com/phillarmonic/drun) automation language.
+
+### Included
+
+- TextMate syntax highlighting for `.drun` files
+- Language registration for the `drun` language id
+- Comment, bracket, auto-close, and basic indentation-aware folding configuration
+
+### Highlighted syntax
+
+- `task`, `project`, `version`, `requires`, `given`, `accepts`, `depends`, `call`, `include`
+- Control flow such as `if`, `when`, `for each`, `try`, `catch`, `finally`
+- Built-in actions and domain keywords for Docker, Git, HTTP, orchestration, secrets, and detection
+- Double-quoted strings with escapes
+- String interpolation like `{name}` and `{$name}`
+- `$variables`, booleans, numbers, arrays, operators, and comments
+
+### Install locally
+
+1. Open this folder in VS Code.
+2. Run `Developer: Install Extension from Location...`.
+3. Choose `/Users/andy/repos/phillarmonic/drun-vscode`.
+
+### Debug locally
+
+Open this repo in VS Code and run the `Run Drun Extension` launch configuration. It starts an Extension Development Host and opens [samples/spec-coverage.drun](/Users/andy/repos/phillarmonic/drun-vscode/samples/spec-coverage.drun) for a quick highlighting check.
+
+### Sample
+
+```drun
+version: 2.0
+
+task "deploy":
+  given $environment defaults to "staging" from ["dev", "staging", "production"]
+
+  step "Deploying to {$environment}"
+  if docker is available:
+    build docker image "myapp:{environment}"
+    success "Build complete"
+```
+
+For a broader manual highlighting check, open [samples/spec-coverage.drun](/Users/andy/repos/phillarmonic/drun-vscode/samples/spec-coverage.drun).

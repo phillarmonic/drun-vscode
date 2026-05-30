@@ -1,0 +1,35 @@
+version: 2.0
+
+project "spec-coverage" version "1.0.0":
+  parameter $environment as string from ["dev", "staging", "production"] defaults to "dev"
+  set platforms as list to ["linux", "darwin", "windows"]
+
+  shell config:
+    darwin:
+      executable: "/bin/zsh"
+      args:
+        - "-l"
+        - "-i"
+
+  snippet "show-context":
+    info "Project {$globals.project} v{$globals.version}"
+    info "Environment {$environment}"
+
+template task "docker-build":
+  given $tag defaults to "{current git branch | replace '/' by '-'}"
+  given $push as boolean defaults to "false"
+
+  run "docker build {$push ? '--push' : ''} -t myapp:{$tag} ."
+
+task "deploy" means "Exercise grammar coverage":
+  use snippet "show-context"
+
+  let $config = { port: 8080, host: "localhost" }
+
+  for each $platform in $globals.platforms:
+    info "Platform {$platform}"
+
+  if $environment is not empty:
+    call task "docker-build" with tag="{$environment}"
+  otherwise:
+    warn "No environment provided"

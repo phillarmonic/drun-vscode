@@ -1,0 +1,46 @@
+{
+  "name": "drun-language-support",
+  "displayName": "Drun Language Support",
+  "description": "Syntax highlighting and editor support for the Drun automation language.",
+  "version": "0.0.1",
+  "publisher": "phillarmonic",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "drun",
+    "automation",
+    "dsl",
+    "textmate"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phillarmonic/drun-vscode"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "drun",
+        "aliases": [
+          "Drun",
+          "drun"
+        ],
+        "extensions": [
+          ".drun"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "drun",
+        "scopeName": "source.drun",
+        "path": "./syntaxes/drun.tmLanguage.json"
+      }
+    ]
+  }
+}
