@@ -26,7 +26,8 @@
     "url": "https://github.com/phillarmonic/drun-vscode"
   },
   "scripts": {
-    "build:extension:compile": "tsc -p ./tsconfig.json",
+    "build:extension:typecheck": "tsc -p ./tsconfig.json --noEmit",
+    "build:extension:compile": "pnpm run build:extension:typecheck && node ./scripts/build-extension.js",
     "build:grammar:compile": "tsc -p ./tsconfig.grammar.json",
     "build:grammar": "pnpm run build:grammar:compile && node ./.build/scripts/build-grammar.js",
     "compile": "pnpm run build:grammar && pnpm run build:extension:compile",
@@ -36,13 +37,12 @@
     "vscode:prepublish": "pnpm run compile",
     "package:vsix": "node ./scripts/package-vsix.js"
   },
-  "dependencies": {
-    "vscode-languageclient": "^9.0.1"
-  },
   "devDependencies": {
     "@types/node": "^24.0.10",
     "@types/vscode": "^1.85.0",
+    "esbuild": "^0.28.1",
     "typescript": "^5.8.3",
+    "vscode-languageclient": "^9.0.1",
     "vscode-oniguruma": "^2.0.1",
     "vscode-textmate": "^9.2.0"
   },
