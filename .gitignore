@@ -160,6 +160,7 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
+.build
 dist
 
 # Gatsby files
@@ -198,4 +199,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-

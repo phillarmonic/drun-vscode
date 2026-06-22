@@ -8,6 +8,12 @@ importers:
 
   .:
     devDependencies:
+      '@types/node':
+        specifier: ^24.0.10
+        version: 24.13.2
+      typescript:
+        specifier: ^5.8.3
+        version: 5.9.3
       vscode-oniguruma:
         specifier: ^2.0.1
         version: 2.0.1
@@ -17,6 +23,17 @@ importers:
 
 packages:
 
+  '@types/node@24.13.2':
+    resolution: {integrity: sha512-fRa09kZTgu8o71KFcDjUFuc7F+dEbZYZmkI0mg5YBTRs0yMKjYHsq/c0urDKeDb+D5qVgXOdFcuu+DZPKOITwA==}
+
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  undici-types@7.18.2:
+    resolution: {integrity: sha512-AsuCzffGHJybSaRrmr5eHr81mwJU3kjw6M+uprWvCXiNeN9SOGwQ3Jn8jb8m3Z6izVgknn1R0FTCEAP2QrLY/w==}
+
   vscode-oniguruma@2.0.1:
     resolution: {integrity: sha512-poJU8iHIWnC3vgphJnrLZyI3YdqRlR27xzqDmpPXYzA93R4Gk8z7T6oqDzDoHjoikA2aS82crdXFkjELCdJsjQ==}
 
@@ -24,6 +41,14 @@ packages:
     resolution: {integrity: sha512-n2uGbUcrjhUEBH16uGA0TvUfhWwliFZ1e3+pTjrkim1Mt7ydB41lV08aUvsi70OlzDWp6X7Bx3w/x3fAXIsN0Q==}
 
 snapshots:
+
+  '@types/node@24.13.2':
+    dependencies:
+      undici-types: 7.18.2
+
+  typescript@5.9.3: {}
+
+  undici-types@7.18.2: {}
 
   vscode-oniguruma@2.0.1: {}
 

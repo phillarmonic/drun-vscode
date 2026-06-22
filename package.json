@@ -22,11 +22,18 @@
     "url": "https://github.com/phillarmonic/drun-vscode"
   },
   "scripts": {
-    "validate:json": "node ./scripts/validate-json.mjs",
-    "test:grammar": "node ./scripts/test-grammar.mjs",
-    "test": "node ./scripts/validate-json.mjs && node ./scripts/test-grammar.mjs"
+    "build:grammar:compile": "tsc -p ./tsconfig.grammar.json",
+    "build:grammar": "pnpm run build:grammar:compile && node ./.build/scripts/build-grammar.js",
+    "compile": "pnpm run build:grammar",
+    "validate:json": "pnpm run build:grammar && node ./.build/scripts/validate-json.js",
+    "test:grammar": "pnpm run build:grammar && node ./.build/scripts/test-grammar.js",
+    "test": "pnpm run validate:json && pnpm run test:grammar",
+    "vscode:prepublish": "pnpm run compile",
+    "package:vsix": "node ./scripts/package-vsix.js"
   },
   "devDependencies": {
+    "@types/node": "^24.0.10",
+    "typescript": "^5.8.3",
     "vscode-oniguruma": "^2.0.1",
     "vscode-textmate": "^9.2.0"
   },

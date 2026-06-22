@@ -37,8 +37,16 @@ pnpm test
 
 That runs:
 
+- TypeScript compilation for grammar tooling
+- Grammar generation from [syntaxes/drun.tmLanguage.source.ts](/Users/andy/repos/phillarmonic/drun-vscode/syntaxes/drun.tmLanguage.source.ts) into [syntaxes/drun.tmLanguage.json](/Users/andy/repos/phillarmonic/drun-vscode/syntaxes/drun.tmLanguage.json)
 - JSON validation for extension metadata and grammar files
 - TextMate grammar assertions from [tests/grammar/spec-coverage.test.json](/Users/andy/repos/phillarmonic/drun-vscode/tests/grammar/spec-coverage.test.json) against [samples/spec-coverage.drun](/Users/andy/repos/phillarmonic/drun-vscode/samples/spec-coverage.drun)
+
+The TextMate grammar source now lives in [syntaxes/drun.tmLanguage.source.ts](/Users/andy/repos/phillarmonic/drun-vscode/syntaxes/drun.tmLanguage.source.ts). Regenerate the JSON artifact with:
+
+```bash
+pnpm run build:grammar
+```
 
 ### Sample
 
