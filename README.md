@@ -11,8 +11,9 @@ VS Code language support for the [Drun](https://github.com/phillarmonic/drun) au
 ### Highlighted syntax
 
 - `task`, `project`, `version`, `requires`, `given`, `accepts`, `depends`, `call`, `include`
-- Control flow such as `if`, `when`, `for each`, `try`, `catch`, `finally`
-- Built-in actions and domain keywords for Docker, Git, HTTP, orchestration, secrets, and detection
+- Control flow such as `if`, repeated `else if`, `when` / `otherwise`, `for each`, `try`, `catch`, `finally`
+- Detection and constraint forms such as `is/are available`, version checks, file existence checks, and parameter validation operators
+- Built-in actions and domain keywords for Docker, Git, HTTP, orchestration, secrets, capture, dependencies, and detection modifiers
 - Double-quoted strings with escapes
 - String interpolation like `{name}` and `{$name}`
 - `$variables`, booleans, numbers, arrays, operators, and comments
@@ -62,4 +63,4 @@ task "deploy":
     success "Build complete"
 ```
 
-For a broader manual highlighting check, open [samples/spec-coverage.drun](/Users/andy/repos/phillarmonic/drun-vscode/samples/spec-coverage.drun).
+For the canonical highlighting coverage fixture, open [samples/spec-coverage.drun](/Users/andy/repos/phillarmonic/drun-vscode/samples/spec-coverage.drun). It is the sample that the grammar assertions track and should be kept aligned with newly supported syntax families.

@@ -23,6 +23,7 @@ const declarationKeywords = [
   "version",
   "task",
   "means",
+  "mode",
   "project",
   "set",
   "let",
@@ -81,7 +82,10 @@ const controlKeywords = [
   "matches",
   "matching",
   "between",
-  "exists"
+  "exists",
+  "available",
+  "detected",
+  "version"
 ];
 
 const wordOperators = [
@@ -351,6 +355,7 @@ const domainConstants = [
   "line",
   "match",
   "pattern",
+  "email",
   "format",
   "concat",
   "split",

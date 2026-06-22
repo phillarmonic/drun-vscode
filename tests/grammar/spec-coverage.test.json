@@ -11,49 +11,120 @@
     },
     {
       "line": 6,
-      "column": 12,
+      "column": 10,
       "scopes": [
         "source.drun",
         "entity.name.type.import-selector.drun"
       ]
     },
     {
-      "line": 18,
-      "column": 24,
+      "line": 16,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "keyword.control.lifecycle.drun"
+      ]
+    },
+    {
+      "line": 20,
+      "column": 19,
       "scopes": [
         "source.drun",
         "meta.interpolation.drun",
-        "variable.other.drun"
+        "variable.language.globals.drun"
       ]
     },
     {
-      "line": 26,
-      "column": 1,
+      "line": 23,
+      "column": 0,
       "scopes": [
         "source.drun",
-        "meta.definition.task.drun",
-        "keyword.declaration.task.drun"
+        "meta.definition.template-task.drun",
+        "keyword.declaration.template.drun"
       ]
     },
     {
-      "line": 33,
-      "column": 5,
+      "line": 34,
+      "column": 2,
       "scopes": [
         "source.drun",
-        "support.type.action.drun"
+        "meta.dependency.declaration.drun",
+        "keyword.declaration.drun"
+      ]
+    },
+    {
+      "line": 34,
+      "column": 19,
+      "scopes": [
+        "source.drun",
+        "keyword.operator.word.drun"
+      ]
+    },
+    {
+      "line": 36,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.workdir.drun",
+        "keyword.control.import.drun"
+      ]
+    },
+    {
+      "line": 38,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.variable.declaration.drun",
+        "keyword.declaration.drun"
       ]
     },
     {
       "line": 40,
-      "column": 5,
+      "column": 2,
       "scopes": [
         "source.drun",
-        "support.type.action.drun"
+        "meta.capture.expression.drun",
+        "keyword.declaration.drun"
       ]
     },
     {
       "line": 43,
-      "column": 5,
+      "column": 15,
+      "scopes": [
+        "source.drun",
+        "meta.capture.shell.inline.drun",
+        "support.type.action.drun"
+      ]
+    },
+    {
+      "line": 50,
+      "column": 20,
+      "scopes": [
+        "source.drun",
+        "keyword.control.drun"
+      ]
+    },
+    {
+      "line": 52,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.control.else-if.drun",
+        "keyword.control.drun"
+      ]
+    },
+    {
+      "line": 57,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.control.statement.drun",
+        "keyword.control.drun"
+      ]
+    },
+    {
+      "line": 58,
+      "column": 4,
       "scopes": [
         "source.drun",
         "meta.call.task.drun",
@@ -61,15 +132,34 @@
       ]
     },
     {
-      "line": 42,
-      "column": 2,
+      "line": 58,
+      "column": 30,
       "scopes": [
         "source.drun",
-        "keyword.control.drun"
+        "meta.call.task.argument.drun",
+        "variable.parameter.drun"
       ]
     },
     {
-      "line": 47,
+      "line": 62,
+      "column": 25,
+      "scopes": [
+        "source.drun",
+        "meta.shell.inline.drun",
+        "keyword.operator.word.drun"
+      ]
+    },
+    {
+      "line": 63,
+      "column": 44,
+      "scopes": [
+        "source.drun",
+        "meta.service-scoped-shell.modifier.drun",
+        "keyword.operator.word.drun"
+      ]
+    },
+    {
+      "line": 64,
       "column": 2,
       "scopes": [
         "source.drun",
@@ -78,18 +168,45 @@
       ]
     },
     {
-      "line": 55,
-      "column": 5,
+      "line": 71,
+      "column": 2,
       "scopes": [
         "source.drun",
         "entity.other.attribute-name.orchestration.drun"
       ]
     },
     {
-      "line": 69,
-      "column": 3,
+      "line": 86,
+      "column": 30,
       "scopes": [
         "source.drun",
+        "meta.orchestration.action.drun",
+        "keyword.operator.word.drun"
+      ]
+    },
+    {
+      "line": 89,
+      "column": 40,
+      "scopes": [
+        "source.drun",
+        "entity.name.type.service.drun"
+      ]
+    },
+    {
+      "line": 90,
+      "column": 53,
+      "scopes": [
+        "source.drun",
+        "meta.orchestration.modifier.drun",
+        "keyword.operator.word.drun"
+      ]
+    },
+    {
+      "line": 91,
+      "column": 27,
+      "scopes": [
+        "source.drun",
+        "meta.orchestration.action.drun",
         "support.type.action.drun"
       ]
     }

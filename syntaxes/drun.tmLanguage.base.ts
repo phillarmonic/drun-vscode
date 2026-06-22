@@ -8,6 +8,10 @@ export const baseRepository: Record<string, TextMateRule> = {
       { include: "#task-definition" },
       { include: "#snippet-definition" },
       { include: "#parameter-definition" },
+      { include: "#dependency-declaration" },
+      { include: "#variable-declaration" },
+      { include: "#control-flow" },
+      { include: "#detection-conditions" },
       { include: "#include-statement" },
       { include: "#call-task" },
       { include: "#lifecycle-hooks" },
@@ -111,6 +115,43 @@ export const baseRepository: Record<string, TextMateRule> = {
       }
     ]
   },
+  "dependency-declaration": {
+    patterns: [
+      {
+        name: "meta.dependency.declaration.drun",
+        match: "^(\\s*)(depends)(\\s+)(on)\\b",
+        captures: {
+          "2": { name: "keyword.declaration.drun" },
+          "4": { name: "keyword.operator.word.drun" }
+        }
+      },
+      {
+        name: "keyword.operator.word.drun",
+        match: "\\b(?:then|and|in\\s+parallel)\\b"
+      }
+    ]
+  },
+  "variable-declaration": {
+    patterns: [
+      {
+        name: "meta.variable.declaration.drun",
+        match: "^(\\s*)(let|set|define)(\\s+)(\\$?[A-Za-z_][A-Za-z0-9_\\-]*)",
+        captures: {
+          "2": { name: "keyword.declaration.drun" },
+          "4": { name: "variable.other.drun" }
+        }
+      },
+      {
+        name: "meta.capture.expression.drun",
+        match: "^(\\s*)(capture)(\\s+)(?!from\\s+shell)([A-Za-z_][A-Za-z0-9_\\-]*)(\\s+)(from)\\b",
+        captures: {
+          "2": { name: "keyword.declaration.drun" },
+          "4": { name: "variable.other.drun" },
+          "6": { name: "keyword.operator.word.drun" }
+        }
+      }
+    ]
+  },
   "include-statement": {
     patterns: [
       {
@@ -163,6 +204,15 @@ export const baseRepository: Record<string, TextMateRule> = {
   "capture-shell": {
     patterns: [
       {
+        name: "meta.shell.inline.drun",
+        match: "^(\\s*)(run|exec|shell)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(?:\\s+(attached))?",
+        captures: {
+          "2": { name: "support.type.action.drun" },
+          "4": { name: "string.quoted.double.drun" },
+          "5": { name: "keyword.operator.word.drun" }
+        }
+      },
+      {
         name: "meta.capture.shell.inline.drun",
         match: "^(\\s*)(capture)(\\s+)(from)(\\s+)(shell)(\\s+)(as)(\\s+)(\\$[A-Za-z_][A-Za-z0-9_\\-]*)(?=\\s*:)",
         captures: {
@@ -209,6 +259,13 @@ export const baseRepository: Record<string, TextMateRule> = {
           "6": { name: "support.constant.domain.drun" },
           "8": { name: "entity.name.namespace.drun" }
         }
+      },
+      {
+        name: "meta.service-scoped-shell.modifier.drun",
+        match: "\\b(attached)\\b",
+        captures: {
+          "1": { name: "keyword.operator.word.drun" }
+        }
       }
     ]
   },
@@ -238,6 +295,70 @@ export const baseRepository: Record<string, TextMateRule> = {
           "3": { name: "support.constant.domain.drun" },
           "5": { name: "keyword.operator.word.drun" },
           "7": { name: "support.constant.domain.drun" }
+        }
+      }
+    ]
+  },
+  "control-flow": {
+    patterns: [
+      {
+        name: "meta.control.else-if.drun",
+        match: "^(\\s*)(else)(\\s+)(if)\\b",
+        captures: {
+          "2": { name: "keyword.control.drun" },
+          "4": { name: "keyword.control.drun" }
+        }
+      },
+      {
+        name: "meta.control.statement.drun",
+        match: "^(\\s*)(if|when|otherwise|else|try|catch|finally)(?=\\b)",
+        captures: {
+          "2": { name: "keyword.control.drun" }
+        }
+      },
+      {
+        name: "meta.control.match-arm.drun",
+        match: "^(\\s*)(is)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\"|\\$[A-Za-z_][A-Za-z0-9_\\-]*|\\{[^}]+\\}|[A-Za-z_][A-Za-z0-9_\\-]*)(?=\\s*:)",
+        captures: {
+          "2": { name: "keyword.control.drun" },
+          "4": { name: "string.quoted.double.drun" }
+        }
+      }
+    ]
+  },
+  "detection-conditions": {
+    patterns: [
+      {
+        name: "meta.condition.tool-availability.drun",
+        match: "^(\\s*)(if)(\\s+)(.+?)(\\s+)(is|are)(\\s+)(not\\s+available|available)\\b",
+        captures: {
+          "2": { name: "keyword.control.drun" },
+          "6": { name: "keyword.control.drun" },
+          "8": { name: "keyword.control.drun" }
+        }
+      },
+      {
+        name: "meta.condition.version-check.drun",
+        match: "\\b(and\\s+version|version)(\\s+)(==|!=|<=|>=|<|>)\\b",
+        captures: {
+          "1": { name: "keyword.control.drun" },
+          "3": { name: "keyword.operator.comparison.drun" }
+        }
+      },
+      {
+        name: "meta.condition.filesystem.drun",
+        match: "\\b(file|folder|directory|dir)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\"|\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_\\-]*)",
+        captures: {
+          "1": { name: "support.constant.domain.drun" },
+          "3": { name: "string.quoted.double.path.drun" }
+        }
+      },
+      {
+        name: "meta.condition.detected.drun",
+        match: "\\b([A-Za-z_][A-Za-z0-9_\\-]*)(\\s+)(is\\s+detected|detected)\\b",
+        captures: {
+          "1": { name: "support.constant.domain.drun" },
+          "3": { name: "keyword.control.drun" }
         }
       }
     ]
@@ -344,7 +465,7 @@ export const baseRepository: Record<string, TextMateRule> = {
       },
       {
         name: "meta.orchestration.action.drun",
-        match: "^(\\s*)(orchestrate)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(\\s+)(start|up|stop|restart|recreate|status|show\\s+endpoints|endpoints|health|health_check|build|pull|down|logs|clone\\s+repositories|update\\s+repositories|list\\s+branches|switch\\s+branch\\s+to\\s+default|set\\s+all\\s+branches\\s+to\\s+default)(?:(\\s+)(starting\\s+from)(\\s+)(\\$[A-Za-z_][A-Za-z0-9_\\-]*|\"(?:[^\"\\\\]|\\\\.)*\"|\\{[^}]+\\}))?",
+        match: "^(\\s*)(orchestrate)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(\\s+)(show\\s+endpoints|clone\\s+repositories|update\\s+repositories|list\\s+branches|switch\\s+branch\\s+to\\s+default|set\\s+all\\s+branches\\s+to\\s+default|health_check|restart|recreate|status|health|build|pull|down|logs|start|stop|scale|endpoints|up)(?:(\\s+)(starting\\s+from)(\\s+)(\\$[A-Za-z_][A-Za-z0-9_\\-]*|\"(?:[^\"\\\\]|\\\\.)*\"|\\{[^}]+\\}))?",
         captures: {
           "2": { name: "support.type.action.drun" },
           "4": { name: "entity.name.type.orchestration.drun" },
@@ -352,6 +473,17 @@ export const baseRepository: Record<string, TextMateRule> = {
           "8": { name: "keyword.operator.word.drun" },
           "10": { name: "entity.name.type.service.drun" }
         }
+      },
+      {
+        name: "meta.orchestration.modifier.drun",
+        match: "\\b(services|service|starting\\s+from|with\\s+cache|with\\s+branch|with\\s+timeout)\\b",
+        captures: {
+          "1": { name: "keyword.operator.word.drun" }
+        }
+      },
+      {
+        name: "entity.name.type.service.drun",
+        match: "(?<=\\bservice\\s)(\"(?:[^\"\\\\]|\\\\.)*\"|\\$[A-Za-z_][A-Za-z0-9_\\-]*|\\{[^}]+\\})"
       },
       {
         name: "entity.other.attribute-name.orchestration.drun",
@@ -363,12 +495,20 @@ export const baseRepository: Record<string, TextMateRule> = {
     patterns: [
       {
         name: "meta.call.task.drun",
-        match: "^(\\s*)(call)(\\s+)(task)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\"|[A-Za-z_][A-Za-z0-9_:.]*)(?:(\\s+)(with))?",
+        match: "^(\\s*)(call)(\\s+)(task)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\"|[A-Za-z_][A-Za-z0-9_:.\\-]*)(?:(\\s+)(with))?",
         captures: {
           "2": { name: "keyword.control.call.drun" },
           "4": { name: "keyword.declaration.task.drun" },
           "6": { name: "entity.name.function.task.drun" },
           "8": { name: "keyword.operator.word.drun" }
+        }
+      },
+      {
+        name: "meta.call.task.argument.drun",
+        match: "(?:\\s|^)([A-Za-z_][A-Za-z0-9_\\-]*)(=)",
+        captures: {
+          "1": { name: "variable.parameter.drun" },
+          "2": { name: "keyword.operator.assignment.drun" }
         }
       }
     ]

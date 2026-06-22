@@ -59,6 +59,18 @@
           "include": "#parameter-definition"
         },
         {
+          "include": "#dependency-declaration"
+        },
+        {
+          "include": "#variable-declaration"
+        },
+        {
+          "include": "#control-flow"
+        },
+        {
+          "include": "#detection-conditions"
+        },
+        {
           "include": "#include-statement"
         },
         {
@@ -209,6 +221,57 @@
         }
       ]
     },
+    "dependency-declaration": {
+      "patterns": [
+        {
+          "name": "meta.dependency.declaration.drun",
+          "match": "^(\\s*)(depends)(\\s+)(on)\\b",
+          "captures": {
+            "2": {
+              "name": "keyword.declaration.drun"
+            },
+            "4": {
+              "name": "keyword.operator.word.drun"
+            }
+          }
+        },
+        {
+          "name": "keyword.operator.word.drun",
+          "match": "\\b(?:then|and|in\\s+parallel)\\b"
+        }
+      ]
+    },
+    "variable-declaration": {
+      "patterns": [
+        {
+          "name": "meta.variable.declaration.drun",
+          "match": "^(\\s*)(let|set|define)(\\s+)(\\$?[A-Za-z_][A-Za-z0-9_\\-]*)",
+          "captures": {
+            "2": {
+              "name": "keyword.declaration.drun"
+            },
+            "4": {
+              "name": "variable.other.drun"
+            }
+          }
+        },
+        {
+          "name": "meta.capture.expression.drun",
+          "match": "^(\\s*)(capture)(\\s+)(?!from\\s+shell)([A-Za-z_][A-Za-z0-9_\\-]*)(\\s+)(from)\\b",
+          "captures": {
+            "2": {
+              "name": "keyword.declaration.drun"
+            },
+            "4": {
+              "name": "variable.other.drun"
+            },
+            "6": {
+              "name": "keyword.operator.word.drun"
+            }
+          }
+        }
+      ]
+    },
     "include-statement": {
       "patterns": [
         {
@@ -290,6 +353,21 @@
     },
     "capture-shell": {
       "patterns": [
+        {
+          "name": "meta.shell.inline.drun",
+          "match": "^(\\s*)(run|exec|shell)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(?:\\s+(attached))?",
+          "captures": {
+            "2": {
+              "name": "support.type.action.drun"
+            },
+            "4": {
+              "name": "string.quoted.double.drun"
+            },
+            "5": {
+              "name": "keyword.operator.word.drun"
+            }
+          }
+        },
         {
           "name": "meta.capture.shell.inline.drun",
           "match": "^(\\s*)(capture)(\\s+)(from)(\\s+)(shell)(\\s+)(as)(\\s+)(\\$[A-Za-z_][A-Za-z0-9_\\-]*)(?=\\s*:)",
@@ -373,6 +451,15 @@
               "name": "entity.name.namespace.drun"
             }
           }
+        },
+        {
+          "name": "meta.service-scoped-shell.modifier.drun",
+          "match": "\\b(attached)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.operator.word.drun"
+            }
+          }
         }
       ]
     },
@@ -429,6 +516,98 @@
             },
             "7": {
               "name": "support.constant.domain.drun"
+            }
+          }
+        }
+      ]
+    },
+    "control-flow": {
+      "patterns": [
+        {
+          "name": "meta.control.else-if.drun",
+          "match": "^(\\s*)(else)(\\s+)(if)\\b",
+          "captures": {
+            "2": {
+              "name": "keyword.control.drun"
+            },
+            "4": {
+              "name": "keyword.control.drun"
+            }
+          }
+        },
+        {
+          "name": "meta.control.statement.drun",
+          "match": "^(\\s*)(if|when|otherwise|else|try|catch|finally)(?=\\b)",
+          "captures": {
+            "2": {
+              "name": "keyword.control.drun"
+            }
+          }
+        },
+        {
+          "name": "meta.control.match-arm.drun",
+          "match": "^(\\s*)(is)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\"|\\$[A-Za-z_][A-Za-z0-9_\\-]*|\\{[^}]+\\}|[A-Za-z_][A-Za-z0-9_\\-]*)(?=\\s*:)",
+          "captures": {
+            "2": {
+              "name": "keyword.control.drun"
+            },
+            "4": {
+              "name": "string.quoted.double.drun"
+            }
+          }
+        }
+      ]
+    },
+    "detection-conditions": {
+      "patterns": [
+        {
+          "name": "meta.condition.tool-availability.drun",
+          "match": "^(\\s*)(if)(\\s+)(.+?)(\\s+)(is|are)(\\s+)(not\\s+available|available)\\b",
+          "captures": {
+            "2": {
+              "name": "keyword.control.drun"
+            },
+            "6": {
+              "name": "keyword.control.drun"
+            },
+            "8": {
+              "name": "keyword.control.drun"
+            }
+          }
+        },
+        {
+          "name": "meta.condition.version-check.drun",
+          "match": "\\b(and\\s+version|version)(\\s+)(==|!=|<=|>=|<|>)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.control.drun"
+            },
+            "3": {
+              "name": "keyword.operator.comparison.drun"
+            }
+          }
+        },
+        {
+          "name": "meta.condition.filesystem.drun",
+          "match": "\\b(file|folder|directory|dir)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\"|\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_\\-]*)",
+          "captures": {
+            "1": {
+              "name": "support.constant.domain.drun"
+            },
+            "3": {
+              "name": "string.quoted.double.path.drun"
+            }
+          }
+        },
+        {
+          "name": "meta.condition.detected.drun",
+          "match": "\\b([A-Za-z_][A-Za-z0-9_\\-]*)(\\s+)(is\\s+detected|detected)\\b",
+          "captures": {
+            "1": {
+              "name": "support.constant.domain.drun"
+            },
+            "3": {
+              "name": "keyword.control.drun"
             }
           }
         }
@@ -600,7 +779,7 @@
         },
         {
           "name": "meta.orchestration.action.drun",
-          "match": "^(\\s*)(orchestrate)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(\\s+)(start|up|stop|restart|recreate|status|show\\s+endpoints|endpoints|health|health_check|build|pull|down|logs|clone\\s+repositories|update\\s+repositories|list\\s+branches|switch\\s+branch\\s+to\\s+default|set\\s+all\\s+branches\\s+to\\s+default)(?:(\\s+)(starting\\s+from)(\\s+)(\\$[A-Za-z_][A-Za-z0-9_\\-]*|\"(?:[^\"\\\\]|\\\\.)*\"|\\{[^}]+\\}))?",
+          "match": "^(\\s*)(orchestrate)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(\\s+)(show\\s+endpoints|clone\\s+repositories|update\\s+repositories|list\\s+branches|switch\\s+branch\\s+to\\s+default|set\\s+all\\s+branches\\s+to\\s+default|health_check|restart|recreate|status|health|build|pull|down|logs|start|stop|scale|endpoints|up)(?:(\\s+)(starting\\s+from)(\\s+)(\\$[A-Za-z_][A-Za-z0-9_\\-]*|\"(?:[^\"\\\\]|\\\\.)*\"|\\{[^}]+\\}))?",
           "captures": {
             "2": {
               "name": "support.type.action.drun"
@@ -620,6 +799,19 @@
           }
         },
         {
+          "name": "meta.orchestration.modifier.drun",
+          "match": "\\b(services|service|starting\\s+from|with\\s+cache|with\\s+branch|with\\s+timeout)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.operator.word.drun"
+            }
+          }
+        },
+        {
+          "name": "entity.name.type.service.drun",
+          "match": "(?<=\\bservice\\s)(\"(?:[^\"\\\\]|\\\\.)*\"|\\$[A-Za-z_][A-Za-z0-9_\\-]*|\\{[^}]+\\})"
+        },
+        {
           "name": "entity.other.attribute-name.orchestration.drun",
           "match": "^(\\s*)(repository|build|health\\s+check|services|strategy|circuit_breaker|stop_on_failure|health_check_interval|startup_timeout|shutdown_timeout|makefile_order|makefile_timeout|clone_order|clone_timeout|pre_task|post_task|git_ssh_key|dns_checks|url|branch|tag|ssh_key|clone|update_on_start|required|command|allocate_tty|makefile|make_target|make_args|retry_on_failure|max_retries|retry_delay|fallback_command|type|endpoint|timeout|interval|retries|condition|container)(?=\\s*:|\\s+\\[|\\s+\"|\\s+true\\b|\\s+false\\b|\\s+\\d)"
         }
@@ -629,7 +821,7 @@
       "patterns": [
         {
           "name": "meta.call.task.drun",
-          "match": "^(\\s*)(call)(\\s+)(task)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\"|[A-Za-z_][A-Za-z0-9_:.]*)(?:(\\s+)(with))?",
+          "match": "^(\\s*)(call)(\\s+)(task)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\"|[A-Za-z_][A-Za-z0-9_:.\\-]*)(?:(\\s+)(with))?",
           "captures": {
             "2": {
               "name": "keyword.control.call.drun"
@@ -642,6 +834,18 @@
             },
             "8": {
               "name": "keyword.operator.word.drun"
+            }
+          }
+        },
+        {
+          "name": "meta.call.task.argument.drun",
+          "match": "(?:\\s|^)([A-Za-z_][A-Za-z0-9_\\-]*)(=)",
+          "captures": {
+            "1": {
+              "name": "variable.parameter.drun"
+            },
+            "2": {
+              "name": "keyword.operator.assignment.drun"
             }
           }
         }
@@ -886,11 +1090,11 @@
       "patterns": [
         {
           "name": "keyword.control.drun",
-          "match": "\\b(?:if|else|when|otherwise|for|each|in|parallel|try|catch|finally|throw|rethrow|ignore|break|continue|before|after|on|then|and|or|not|is|are|contains|matches|matching|between|exists)\\b"
+          "match": "\\b(?:if|else|when|otherwise|for|each|in|parallel|try|catch|finally|throw|rethrow|ignore|break|continue|before|after|on|then|and|or|not|is|are|contains|matches|matching|between|exists|available|detected|version)\\b"
         },
         {
           "name": "keyword.declaration.drun",
-          "match": "\\b(?:version|task|means|project|set|let|define|parameter|snippet|template|mixin|requires|tools|given|accepts|defaults|from|to|as|of|depends|include|use|uses|includes|call|with|capture|service)\\b"
+          "match": "\\b(?:version|task|means|mode|project|set|let|define|parameter|snippet|template|mixin|requires|tools|given|accepts|defaults|from|to|as|of|depends|include|use|uses|includes|call|with|capture|service)\\b"
         },
         {
           "name": "keyword.operator.word.drun",
@@ -902,7 +1106,7 @@
         },
         {
           "name": "support.constant.domain.drun",
-          "match": "\\b(?:drun|drunhub|setup|teardown|docker|image|container|compose|replicas|rollout|pods|pod|ingress|manifest|manifests|namespace|port|registry|git|branch|checkout|repository|remote|changes|message|files|get|post|put|delete|patch|head|options|request|response|body|headers|header|endpoint|api|data|timeout|retry|follow|redirects|verify|ssl|auth|bearer|basic|token|user|password|content|type|accept|health|healthy|service|services|ready|host|connection|strategy|sequential|parallel|dependency-based|circuit|breaker|failure|threshold|recovery|interval|retries|networks|external|required|autoprovision|driver|condition|dns|tcp|domain|record|expected|ip|ips|command|working|workdir|missing|force|recreate|deps|never|always|makefile|target|args|pre|post|jobs|verbose|allocate_tty|ssh|key|fallback|delay|path|startup|shutdown|discovery|metrics|enabled|labels|unavailable|max|min|consul|etcd|server|domains|ttl|cache|memory|cpu|limit|policy|orphans|period|env_file|available|installed|tool|tools|framework|environment|node|npm|yarn|pnpm|bun|python|pip|go|golang|cargo|java|maven|gradle|ruby|gem|php|composer|rust|make|kubectl|helm|terraform|aws|gcp|azure|ci|local|production|staging|development|react|vue|angular|django|rails|express|spring|laravel|line|match|pattern|format|concat|split|replace|secret|trim|uppercase|lowercase|prepend|join|slice|length|keys|values|transform|subtract|multiply|divide|modulo|property|filtered|sorted|reversed|unique|first|last|basename|dirname|extension|prefix|suffix|allow|permissions|dir|file|folder|any|running|current|all|exists|locally|attached)\\b"
+          "match": "\\b(?:drun|drunhub|setup|teardown|docker|image|container|compose|replicas|rollout|pods|pod|ingress|manifest|manifests|namespace|port|registry|git|branch|checkout|repository|remote|changes|message|files|get|post|put|delete|patch|head|options|request|response|body|headers|header|endpoint|api|data|timeout|retry|follow|redirects|verify|ssl|auth|bearer|basic|token|user|password|content|type|accept|health|healthy|service|services|ready|host|connection|strategy|sequential|parallel|dependency-based|circuit|breaker|failure|threshold|recovery|interval|retries|networks|external|required|autoprovision|driver|condition|dns|tcp|domain|record|expected|ip|ips|command|working|workdir|missing|force|recreate|deps|never|always|makefile|target|args|pre|post|jobs|verbose|allocate_tty|ssh|key|fallback|delay|path|startup|shutdown|discovery|metrics|enabled|labels|unavailable|max|min|consul|etcd|server|domains|ttl|cache|memory|cpu|limit|policy|orphans|period|env_file|available|installed|tool|tools|framework|environment|node|npm|yarn|pnpm|bun|python|pip|go|golang|cargo|java|maven|gradle|ruby|gem|php|composer|rust|make|kubectl|helm|terraform|aws|gcp|azure|ci|local|production|staging|development|react|vue|angular|django|rails|express|spring|laravel|line|match|pattern|email|format|concat|split|replace|secret|trim|uppercase|lowercase|prepend|join|slice|length|keys|values|transform|subtract|multiply|divide|modulo|property|filtered|sorted|reversed|unique|first|last|basename|dirname|extension|prefix|suffix|allow|permissions|dir|file|folder|any|running|current|all|exists|locally|attached)\\b"
         }
       ]
     },
