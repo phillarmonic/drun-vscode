@@ -10,11 +10,37 @@
       ]
     },
     {
+      "line": 4,
+      "column": 73,
+      "scopes": [
+        "source.drun",
+        "storage.modifier.drun"
+      ]
+    },
+    {
       "line": 6,
       "column": 10,
       "scopes": [
         "source.drun",
         "entity.name.type.import-selector.drun"
+      ]
+    },
+    {
+      "line": 6,
+      "column": 56,
+      "scopes": [
+        "source.drun",
+        "meta.include.alias.drun",
+        "keyword.control.import.drun"
+      ]
+    },
+    {
+      "line": 6,
+      "column": 59,
+      "scopes": [
+        "source.drun",
+        "meta.include.alias.drun",
+        "entity.name.type.namespace.drun"
       ]
     },
     {
@@ -54,10 +80,26 @@
     },
     {
       "line": 34,
-      "column": 19,
+      "column": 35,
       "scopes": [
         "source.drun",
-        "keyword.operator.word.drun"
+        "storage.modifier.drun"
+      ]
+    },
+    {
+      "line": 34,
+      "column": 13,
+      "scopes": [
+        "source.drun",
+        "entity.name.function.task.drun"
+      ]
+    },
+    {
+      "line": 34,
+      "column": 24,
+      "scopes": [
+        "source.drun",
+        "entity.name.function.task.drun"
       ]
     },
     {
@@ -67,6 +109,42 @@
         "source.drun",
         "meta.workdir.drun",
         "keyword.control.import.drun"
+      ]
+    },
+    {
+      "line": 35,
+      "column": 15,
+      "scopes": [
+        "source.drun",
+        "meta.use-snippet.drun",
+        "entity.name.function.snippet.drun"
+      ]
+    },
+    {
+      "line": 36,
+      "column": 6,
+      "scopes": [
+        "source.drun",
+        "meta.workdir.drun",
+        "storage.type.workspace.drun"
+      ]
+    },
+    {
+      "line": 36,
+      "column": 15,
+      "scopes": [
+        "source.drun",
+        "meta.workdir.drun",
+        "string.quoted.double.path.drun"
+      ]
+    },
+    {
+      "line": 33,
+      "column": 14,
+      "scopes": [
+        "source.drun",
+        "meta.definition.task-description.drun",
+        "keyword.declaration.description.drun"
       ]
     },
     {
@@ -97,6 +175,24 @@
       ]
     },
     {
+      "line": 24,
+      "column": 48,
+      "scopes": [
+        "source.drun",
+        "meta.interpolation.drun",
+        "support.function.builtin.drun"
+      ]
+    },
+    {
+      "line": 27,
+      "column": 7,
+      "scopes": [
+        "source.drun",
+        "meta.shell.inline.drun",
+        "support.function.command.drun"
+      ]
+    },
+    {
       "line": 50,
       "column": 20,
       "scopes": [
@@ -109,12 +205,12 @@
       "column": 2,
       "scopes": [
         "source.drun",
-        "meta.control.else-if.drun",
+        "meta.control.statement.drun",
         "keyword.control.drun"
       ]
     },
     {
-      "line": 57,
+      "line": 58,
       "column": 2,
       "scopes": [
         "source.drun",
@@ -123,7 +219,7 @@
       ]
     },
     {
-      "line": 58,
+      "line": 59,
       "column": 4,
       "scopes": [
         "source.drun",
@@ -132,7 +228,7 @@
       ]
     },
     {
-      "line": 58,
+      "line": 59,
       "column": 30,
       "scopes": [
         "source.drun",
@@ -141,7 +237,7 @@
       ]
     },
     {
-      "line": 62,
+      "line": 63,
       "column": 25,
       "scopes": [
         "source.drun",
@@ -150,16 +246,16 @@
       ]
     },
     {
-      "line": 63,
+      "line": 64,
       "column": 44,
       "scopes": [
         "source.drun",
-        "meta.service-scoped-shell.modifier.drun",
+        "meta.service-scoped-shell.drun",
         "keyword.operator.word.drun"
       ]
     },
     {
-      "line": 64,
+      "line": 65,
       "column": 2,
       "scopes": [
         "source.drun",
@@ -168,24 +264,64 @@
       ]
     },
     {
-      "line": 71,
-      "column": 2,
+      "line": 65,
+      "column": 39,
       "scopes": [
         "source.drun",
-        "entity.other.attribute-name.orchestration.drun"
+        "storage.modifier.drun"
       ]
     },
     {
-      "line": 86,
+      "line": 66,
+      "column": 66,
+      "scopes": [
+        "source.drun",
+        "storage.modifier.drun"
+      ]
+    },
+    {
+      "line": 67,
+      "column": 67,
+      "scopes": [
+        "source.drun",
+        "storage.modifier.drun"
+      ]
+    },
+    {
+      "line": 82,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "support.type.property-name.drun"
+      ]
+    },
+    {
+      "line": 78,
+      "column": 9,
+      "scopes": [
+        "source.drun",
+        "storage.type.drun"
+      ]
+    },
+    {
+      "line": 83,
+      "column": 11,
+      "scopes": [
+        "source.drun",
+        "support.constant.domain.drun"
+      ]
+    },
+    {
+      "line": 87,
       "column": 30,
       "scopes": [
         "source.drun",
         "meta.orchestration.action.drun",
-        "keyword.operator.word.drun"
+        "storage.modifier.drun"
       ]
     },
     {
-      "line": 89,
+      "line": 90,
       "column": 40,
       "scopes": [
         "source.drun",
@@ -193,12 +329,12 @@
       ]
     },
     {
-      "line": 90,
-      "column": 53,
+      "line": 92,
+      "column": 40,
       "scopes": [
         "source.drun",
         "meta.orchestration.modifier.drun",
-        "keyword.operator.word.drun"
+        "storage.modifier.drun"
       ]
     },
     {

@@ -22,7 +22,8 @@
       "column": 43,
       "scopes": [
         "source.drun",
-        "entity.name.namespace.drun"
+        "meta.include.alias.drun",
+        "entity.name.type.namespace.drun"
       ]
     },
     {

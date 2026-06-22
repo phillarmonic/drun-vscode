@@ -73,6 +73,24 @@ export const baseRepository: Record<string, TextMateRule> = {
         }
       },
       {
+        name: "meta.definition.task-description.drun",
+        begin: "\\b(means)(\\s+)(\")",
+        beginCaptures: {
+          "1": { name: "keyword.declaration.description.drun" },
+          "3": { name: "punctuation.definition.string.begin.drun" }
+        },
+        end: "\"",
+        endCaptures: {
+          "0": { name: "punctuation.definition.string.end.drun" }
+        },
+        patterns: [
+          {
+            name: "string.quoted.double.documentation.drun",
+            match: "[^\"]+"
+          }
+        ]
+      },
+      {
         name: "meta.definition.project.drun",
         match: "^(\\s*)(project)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(?:(\\s+)(version)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\"))?",
         captures: {
@@ -95,7 +113,7 @@ export const baseRepository: Record<string, TextMateRule> = {
         match: "^(\\s*)(snippet)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")",
         captures: {
           "2": { name: "keyword.declaration.snippet.drun" },
-          "4": { name: "entity.name.constant.snippet.drun" }
+          "4": { name: "entity.name.function.snippet.drun" }
         }
       }
     ]
@@ -110,8 +128,12 @@ export const baseRepository: Record<string, TextMateRule> = {
         }
       },
       {
+        name: "storage.modifier.drun",
+        match: "\\b(?:defaults\\s+to|as\\s+list\\s+to)\\b"
+      },
+      {
         name: "keyword.operator.word.drun",
-        match: "\\b(?:defaults\\s+to|as\\s+list\\s+to|as|from|matching|between|of|to)\\b"
+        match: "\\b(?:as|from|matching|between|of|to)\\b"
       }
     ]
   },
@@ -127,7 +149,19 @@ export const baseRepository: Record<string, TextMateRule> = {
       },
       {
         name: "keyword.operator.word.drun",
-        match: "\\b(?:then|and|in\\s+parallel)\\b"
+        match: "\\b(?:then|and)\\b"
+      },
+      {
+        name: "storage.modifier.drun",
+        match: "\\bin\\s+parallel\\b"
+      },
+      {
+        name: "entity.name.function.task.drun",
+        match: "(?<=\\b(?:on|then|and)\\s)([A-Za-z_][A-Za-z0-9_.:-]*)\\b"
+      },
+      {
+        name: "entity.name.function.task.drun",
+        match: "(?<=,\\s)([A-Za-z_][A-Za-z0-9_.:-]*)\\b"
       }
     ]
   },
@@ -186,8 +220,8 @@ export const baseRepository: Record<string, TextMateRule> = {
         name: "meta.include.alias.drun",
         match: "(?:^|\\s)(as)(\\s+)([A-Za-z_][A-Za-z0-9_-]*)$",
         captures: {
-          "1": { name: "keyword.operator.word.drun" },
-          "3": { name: "entity.name.namespace.drun" }
+          "1": { name: "keyword.control.import.drun" },
+          "3": { name: "entity.name.type.namespace.drun" }
         }
       },
       {
@@ -196,7 +230,7 @@ export const baseRepository: Record<string, TextMateRule> = {
         captures: {
           "2": { name: "keyword.control.import.drun" },
           "4": { name: "keyword.declaration.snippet.drun" },
-          "6": { name: "entity.name.constant.snippet.drun" }
+          "6": { name: "entity.name.function.snippet.drun" }
         }
       }
     ]
@@ -205,12 +239,17 @@ export const baseRepository: Record<string, TextMateRule> = {
     patterns: [
       {
         name: "meta.shell.inline.drun",
-        match: "^(\\s*)(run|exec|shell)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(?:\\s+(attached))?",
-        captures: {
+        begin: "^(\\s*)(run|exec|shell)(\\s+)(\")",
+        beginCaptures: {
           "2": { name: "support.type.action.drun" },
-          "4": { name: "string.quoted.double.drun" },
-          "5": { name: "keyword.operator.word.drun" }
-        }
+          "4": { name: "punctuation.definition.string.begin.drun" }
+        },
+        end: "(\")(?:\\s+(attached))?",
+        endCaptures: {
+          "1": { name: "punctuation.definition.string.end.drun" },
+          "2": { name: "keyword.operator.word.drun" }
+        },
+        patterns: [{ include: "#shell-command-string" }]
       },
       {
         name: "meta.capture.shell.inline.drun",
@@ -244,21 +283,48 @@ export const baseRepository: Record<string, TextMateRule> = {
       },
       {
         name: "meta.workdir.drun",
+        begin: "^(\\s*)(use)(\\s+)(workdir)(\\s+)(\")",
+        beginCaptures: {
+          "2": { name: "keyword.control.import.drun" },
+          "4": { name: "storage.type.workspace.drun" },
+          "5": { name: "punctuation.definition.string.begin.drun" }
+        },
+        end: "\"",
+        endCaptures: {
+          "0": { name: "punctuation.definition.string.end.drun" }
+        },
+        patterns: [
+          {
+            name: "string.quoted.double.path.drun",
+            match: "[^\"]+"
+          }
+        ]
+      },
+      {
+        name: "meta.workdir.drun",
         match: "^(\\s*)(use)(\\s+)(workdir)\\b",
         captures: {
           "2": { name: "keyword.control.import.drun" },
-          "4": { name: "support.constant.domain.drun" }
+          "4": { name: "storage.type.workspace.drun" }
         }
       },
       {
         name: "meta.service-scoped-shell.drun",
-        match: "^(\\s*)(run|exec|shell)(\\s+)(in)(\\s+)(service)(\\s+)(\\$[A-Za-z_][A-Za-z0-9_\\-]*|\"(?:[^\"\\\\]|\\\\.)*\"|[A-Za-z_][A-Za-z0-9_\\-]*)(?=\\s+\"|\\s*:)",
-        captures: {
+        begin:
+          "^(\\s*)(run|exec|shell)(\\s+)(in)(\\s+)(service)(\\s+)(\\$[A-Za-z_][A-Za-z0-9_\\-]*|\"(?:[^\"\\\\]|\\\\.)*\"|[A-Za-z_][A-Za-z0-9_\\-]*)(\\s+)(\")",
+        beginCaptures: {
           "2": { name: "support.type.action.drun" },
           "4": { name: "keyword.operator.word.drun" },
           "6": { name: "support.constant.domain.drun" },
-          "8": { name: "entity.name.namespace.drun" }
-        }
+          "8": { name: "entity.name.type.service.drun" },
+          "10": { name: "punctuation.definition.string.begin.drun" }
+        },
+        end: "(\")(?:\\s+(attached))?",
+        endCaptures: {
+          "1": { name: "punctuation.definition.string.end.drun" },
+          "2": { name: "keyword.operator.word.drun" }
+        },
+        patterns: [{ include: "#shell-command-string" }]
       },
       {
         name: "meta.service-scoped-shell.modifier.drun",
@@ -374,11 +440,8 @@ export const baseRepository: Record<string, TextMateRule> = {
         }
       },
       {
-        name: "meta.http.option.drun",
-        match: "\\b(content\\s+type|with\\s+body|with\\s+header|with\\s+auth|auth\\s+bearer|auth\\s+basic|timeout|retry|download|upload)\\b",
-        captures: {
-          "0": { name: "keyword.operator.word.drun" }
-        }
+        name: "storage.modifier.drun",
+        match: "\\b(content\\s+type|with\\s+body|with\\s+header|with\\s+auth|auth\\s+bearer|auth\\s+basic|timeout|retry|download|upload)\\b"
       }
     ]
   },
@@ -395,11 +458,8 @@ export const baseRepository: Record<string, TextMateRule> = {
         }
       },
       {
-        name: "meta.download.option.drun",
-        match: "\\b(allow\\s+overwrite|allow\\s+permissions|extract\\s+to|remove\\s+archive|with\\s+auth|with\\s+header|timeout|retry)\\b",
-        captures: {
-          "0": { name: "keyword.operator.word.drun" }
-        }
+        name: "storage.modifier.drun",
+        match: "\\b(allow\\s+overwrite|allow\\s+permissions|extract\\s+to|remove\\s+archive|with\\s+auth|with\\s+header|timeout|retry)\\b"
       }
     ]
   },
@@ -440,6 +500,10 @@ export const baseRepository: Record<string, TextMateRule> = {
           "4": { name: "support.constant.domain.drun" },
           "6": { name: "string.quoted.double.drun" }
         }
+      },
+      {
+        name: "storage.modifier.drun",
+        match: "\\btimeout\\b"
       }
     ]
   },
@@ -465,12 +529,12 @@ export const baseRepository: Record<string, TextMateRule> = {
       },
       {
         name: "meta.orchestration.action.drun",
-        match: "^(\\s*)(orchestrate)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(\\s+)(show\\s+endpoints|clone\\s+repositories|update\\s+repositories|list\\s+branches|switch\\s+branch\\s+to\\s+default|set\\s+all\\s+branches\\s+to\\s+default|health_check|restart|recreate|status|health|build|pull|down|logs|start|stop|scale|endpoints|up)(?:(\\s+)(starting\\s+from)(\\s+)(\\$[A-Za-z_][A-Za-z0-9_\\-]*|\"(?:[^\"\\\\]|\\\\.)*\"|\\{[^}]+\\}))?",
+        match: "^(\\s*)(orchestrate)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(\\s+)(show\\s+endpoints|clone\\s+repositories|update\\s+repositories|list\\s+branches|switch\\s+branch\\s+to\\s+default|set\\s+all\\s+branches\\s+to\\s+default|update|health_check|restart|recreate|status|health|build|pull|down|logs|start|stop|scale|endpoints|up)(?:(\\s+)(starting\\s+from)(\\s+)(\\$[A-Za-z_][A-Za-z0-9_\\-]*|\"(?:[^\"\\\\]|\\\\.)*\"|\\{[^}]+\\}))?",
         captures: {
           "2": { name: "support.type.action.drun" },
           "4": { name: "entity.name.type.orchestration.drun" },
           "6": { name: "support.type.action.drun" },
-          "8": { name: "keyword.operator.word.drun" },
+          "8": { name: "storage.modifier.drun" },
           "10": { name: "entity.name.type.service.drun" }
         }
       },
@@ -478,7 +542,7 @@ export const baseRepository: Record<string, TextMateRule> = {
         name: "meta.orchestration.modifier.drun",
         match: "\\b(services|service|starting\\s+from|with\\s+cache|with\\s+branch|with\\s+timeout)\\b",
         captures: {
-          "1": { name: "keyword.operator.word.drun" }
+          "1": { name: "storage.modifier.drun" }
         }
       },
       {
@@ -486,7 +550,53 @@ export const baseRepository: Record<string, TextMateRule> = {
         match: "(?<=\\bservice\\s)(\"(?:[^\"\\\\]|\\\\.)*\"|\\$[A-Za-z_][A-Za-z0-9_\\-]*|\\{[^}]+\\})"
       },
       {
-        name: "entity.other.attribute-name.orchestration.drun",
+        name: "meta.property.url.drun",
+        match: "^(\\s*)(url|endpoint)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")",
+        captures: {
+          "2": { name: "support.type.property-name.drun" },
+          "4": { name: "string.quoted.double.url.drun" }
+        }
+      },
+      {
+        name: "meta.property.command.drun",
+        begin: "^(\\s*)(command)(\\s+)(\")",
+        beginCaptures: {
+          "2": { name: "support.type.property-name.drun" },
+          "4": { name: "punctuation.definition.string.begin.drun" }
+        },
+        end: "\"",
+        endCaptures: {
+          "0": { name: "punctuation.definition.string.end.drun" }
+        },
+        patterns: [{ include: "#shell-command-string" }]
+      },
+      {
+        name: "meta.property.type.drun",
+        match: "^(\\s*)(type)(\\s+)(\"(?:http|https|tcp)\")",
+        captures: {
+          "2": { name: "support.type.property-name.drun" },
+          "4": { name: "storage.type.drun" }
+        }
+      },
+      {
+        name: "meta.property.strategy.drun",
+        match: "^(\\s*)(strategy)(\\s+)(\"(?:sequential|parallel|dependency-based)\")",
+        captures: {
+          "2": { name: "support.type.property-name.drun" },
+          "4": { name: "support.constant.domain.drun" }
+        }
+      },
+      {
+        name: "meta.property.services.drun",
+        match: "^(\\s*)(services)(\\s+)(\\[)(\\s*)(\"(?:[A-Za-z_][A-Za-z0-9_\\-]*)\")",
+        captures: {
+          "2": { name: "support.type.property-name.drun" },
+          "4": { name: "punctuation.section.group.begin.drun" },
+          "6": { name: "entity.name.type.service.drun" }
+        }
+      },
+      {
+        name: "support.type.property-name.drun",
         match: "^(\\s*)(repository|build|health\\s+check|services|strategy|circuit_breaker|stop_on_failure|health_check_interval|startup_timeout|shutdown_timeout|makefile_order|makefile_timeout|clone_order|clone_timeout|pre_task|post_task|git_ssh_key|dns_checks|url|branch|tag|ssh_key|clone|update_on_start|required|command|allocate_tty|makefile|make_target|make_args|retry_on_failure|max_retries|retry_delay|fallback_command|type|endpoint|timeout|interval|retries|condition|container)(?=\\s*:|\\s+\\[|\\s+\"|\\s+true\\b|\\s+false\\b|\\s+\\d)"
       }
     ]
@@ -578,6 +688,24 @@ export const baseRepository: Record<string, TextMateRule> = {
           }
         ]
       }
+    ]
+  },
+  "shell-command-string": {
+    patterns: [
+      {
+        name: "support.function.command.drun",
+        match: "\\G[A-Za-z_./-][A-Za-z0-9_./:-]*"
+      },
+      {
+        name: "constant.character.escape.line-continuation.drun",
+        match: "\\\\\\n"
+      },
+      {
+        name: "constant.character.escape.drun",
+        match: "\\\\."
+      },
+      { include: "#single-quoted" },
+      { include: "#interpolation" }
     ]
   },
   strings: {

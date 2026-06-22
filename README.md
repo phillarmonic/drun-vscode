@@ -12,7 +12,7 @@ VS Code language support for the [Drun](https://github.com/phillarmonic/drun) au
 ### Highlighted syntax
 
 - `task`, `project`, `version`, `requires`, `given`, `accepts`, `depends`, `call`, `include`
-- Control flow such as `if`, repeated `else if`, `when` / `otherwise`, `for each`, `try`, `catch`, `finally`
+- Control flow such as `if` / `else`, `when` / `otherwise`, `for each`, `try`, `catch`, `finally`
 - Detection and constraint forms such as `is/are available`, version checks, file existence checks, and parameter validation operators
 - Built-in actions and domain keywords for Docker, Git, HTTP, orchestration, secrets, capture, dependencies, and detection modifiers
 - Double-quoted strings with escapes

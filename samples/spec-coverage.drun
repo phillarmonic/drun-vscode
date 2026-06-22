@@ -3,7 +3,7 @@ version: 2.0
 project "spec-coverage" version "1.0.0":
   parameter $environment as string from ["dev", "staging", "production"] defaults to "dev"
   set platforms as list to ["linux", "darwin", "windows"]
-  include snippets, templates from "shared/docker.drun" as docker
+  include snippets, templates from "shared/docker.drun" as docker_ns
   include from drunhub "ops/kubernetes" as k8s
 
   shell config:
@@ -36,8 +36,8 @@ task "deploy" means "Exercise grammar coverage":
   use workdir "frontend"
 
   let $config = { port: 8080, host: "localhost" }
-  define release_channel as "stable"
-  capture current_branch from current git branch
+  let release_channel be "stable"
+  capture current_branch from "{current git branch}"
   capture from shell "whoami" as $current_user
 
   capture from shell as $build_info:
@@ -49,10 +49,11 @@ task "deploy" means "Exercise grammar coverage":
 
   if docker,kubectl are available and version >= "1.30":
     info "Container tooling is ready"
-  else if file "Dockerfile" exists:
-    info "Falling back to Dockerfile build flow"
   else:
-    warn "No container build flow detected"
+    if file "Dockerfile" exists:
+      info "Falling back to Dockerfile build flow"
+    else:
+      warn "No container build flow detected"
 
   when $environment is not empty:
     call task run-action with iterations=100
@@ -87,5 +88,6 @@ task "resume":
 
 task "maintenance":
   orchestrate "full_stack" logs service "api"
-  orchestrate "full_stack" recreate services ["api"] with cache "false"
-  orchestrate "full_stack" update repositories with branch "main"
+  orchestrate "full_stack" update with branch "main"
+  orchestrate "full_stack" recreate with cache "false"
+  orchestrate "full_stack" recreate services ["api"]

@@ -431,6 +431,31 @@ const builtinTypes = [
 ];
 
 const builtinFunctions = ["now", "pwd", "hostname", "env", "secret", "current"];
+const transformFunctions = [
+  "concat",
+  "split",
+  "replace",
+  "trim",
+  "uppercase",
+  "lowercase",
+  "prepend",
+  "join",
+  "slice",
+  "length",
+  "keys",
+  "values",
+  "basename",
+  "dirname",
+  "extension",
+  "prefix",
+  "suffix",
+  "filtered",
+  "sorted",
+  "reversed",
+  "unique",
+  "first",
+  "last"
+];
 
 const grammar: TextMateGrammar = {
   $schema: "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
@@ -448,6 +473,10 @@ const grammar: TextMateGrammar = {
         {
           name: "support.function.builtin.drun",
           match: `\\b(?:${builtinFunctions.join("|")})(?=\\b|\\.)`
+        },
+        {
+          name: "support.function.builtin.drun",
+          match: `\\b(?:${transformFunctions.join("|")})\\b`
         },
         {
           name: "support.function.builtin.drun",
