@@ -5,9 +5,13 @@
   "version": "0.0.1",
   "publisher": "phillarmonic",
   "license": "MIT",
+  "main": "./dist/extension.js",
   "engines": {
     "vscode": "^1.85.0"
   },
+  "activationEvents": [
+    "onLanguage:drun"
+  ],
   "categories": [
     "Programming Languages"
   ],
@@ -22,17 +26,22 @@
     "url": "https://github.com/phillarmonic/drun-vscode"
   },
   "scripts": {
+    "build:extension:compile": "tsc -p ./tsconfig.json",
     "build:grammar:compile": "tsc -p ./tsconfig.grammar.json",
     "build:grammar": "pnpm run build:grammar:compile && node ./.build/scripts/build-grammar.js",
-    "compile": "pnpm run build:grammar",
-    "validate:json": "pnpm run build:grammar && node ./.build/scripts/validate-json.js",
+    "compile": "pnpm run build:grammar && pnpm run build:extension:compile",
+    "validate:json": "pnpm run compile && node ./.build/scripts/validate-json.js",
     "test:grammar": "pnpm run build:grammar && node ./.build/scripts/test-grammar.js",
     "test": "pnpm run validate:json && pnpm run test:grammar",
     "vscode:prepublish": "pnpm run compile",
     "package:vsix": "node ./scripts/package-vsix.js"
   },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
   "devDependencies": {
     "@types/node": "^24.0.10",
+    "@types/vscode": "^1.85.0",
     "typescript": "^5.8.3",
     "vscode-oniguruma": "^2.0.1",
     "vscode-textmate": "^9.2.0"
@@ -57,6 +66,21 @@
         "scopeName": "source.drun",
         "path": "./syntaxes/drun.tmLanguage.json"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Drun",
+      "properties": {
+        "drun.enableLanguageServer": {
+          "type": "boolean",
+          "default": true,
+          "description": "Start the Drun language server with `xdrun cmd:lsp` when an eligible xdrun executable is available."
+        },
+        "drun.xdrunPath": {
+          "type": "string",
+          "default": "xdrun",
+          "description": "Path or command name for the xdrun executable used to launch the Drun language server."
+        }
+      }
+    }
   }
 }

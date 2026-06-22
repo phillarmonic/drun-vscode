@@ -5,6 +5,7 @@ VS Code language support for the [Drun](https://github.com/phillarmonic/drun) au
 ### Included
 
 - TextMate syntax highlighting for `.drun` files
+- Automatic `xdrun cmd:lsp` language-server startup when `xdrun` is available
 - Language registration for the `drun` language id
 - Comment, bracket, auto-close, and basic indentation-aware folding configuration
 
@@ -17,6 +18,20 @@ VS Code language support for the [Drun](https://github.com/phillarmonic/drun) au
 - Double-quoted strings with escapes
 - String interpolation like `{name}` and `{$name}`
 - `$variables`, booleans, numbers, arrays, operators, and comments
+
+### Language Server
+
+When `xdrun cmd:lsp` is available, the extension starts it automatically over stdio for `.drun` files. The current integration adds:
+
+- Parser-backed diagnostics
+- Simple keyword and task-name completions
+
+If `xdrun` is missing from `PATH`, or the installed binary does not support `cmd:lsp`, the extension falls back to grammar-only behavior.
+
+Settings:
+
+- `drun.enableLanguageServer`: enable or disable LSP startup
+- `drun.xdrunPath`: override the executable path or command name used to launch `xdrun`
 
 ### Install locally
 
@@ -38,6 +53,7 @@ pnpm test
 
 That runs:
 
+- TypeScript compilation for the VS Code extension entrypoint
 - TypeScript compilation for grammar tooling
 - Grammar generation from [syntaxes/drun.tmLanguage.source.ts](/Users/andy/repos/phillarmonic/drun-vscode/syntaxes/drun.tmLanguage.source.ts) into [syntaxes/drun.tmLanguage.json](/Users/andy/repos/phillarmonic/drun-vscode/syntaxes/drun.tmLanguage.json)
 - JSON validation for extension metadata and grammar files
