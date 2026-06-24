@@ -657,7 +657,7 @@
       "patterns": [
         {
           "name": "meta.condition.tool-availability.drun",
-          "match": "^(\\s*)(if)(\\s+)(.+?)(\\s+)(is|are)(\\s+)(not\\s+available|available)\\b",
+          "match": "^(\\s*)(if)(\\s+)(.+?)(\\s+)(is|are)(\\s+)(not\\s+(?:available|running)|available|running)\\b",
           "captures": {
             "2": {
               "name": "keyword.control.drun"
@@ -1279,7 +1279,7 @@
       "patterns": [
         {
           "name": "keyword.control.drun",
-          "match": "\\b(?:if|else|when|otherwise|for|each|in|parallel|try|catch|finally|throw|rethrow|ignore|break|continue|before|after|on|then|and|or|not|is|are|contains|matches|matching|between|exists|available|detected|version)\\b"
+          "match": "\\b(?:if|else|when|otherwise|for|each|in|parallel|try|catch|finally|throw|rethrow|ignore|break|continue|before|after|on|then|and|or|not|is|are|contains|matches|matching|between|exists|available|running|detected|version)\\b"
         },
         {
           "name": "keyword.declaration.drun",

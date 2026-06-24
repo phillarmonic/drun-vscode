@@ -396,7 +396,7 @@ export const baseRepository: Record<string, TextMateRule> = {
     patterns: [
       {
         name: "meta.condition.tool-availability.drun",
-        match: "^(\\s*)(if)(\\s+)(.+?)(\\s+)(is|are)(\\s+)(not\\s+available|available)\\b",
+        match: "^(\\s*)(if)(\\s+)(.+?)(\\s+)(is|are)(\\s+)(not\\s+(?:available|running)|available|running)\\b",
         captures: {
           "2": { name: "keyword.control.drun" },
           "6": { name: "keyword.control.drun" },

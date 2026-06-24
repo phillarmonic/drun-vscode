@@ -84,6 +84,7 @@ const controlKeywords = [
   "between",
   "exists",
   "available",
+  "running",
   "detected",
   "version"
 ];
