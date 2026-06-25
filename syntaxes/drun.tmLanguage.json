@@ -47,6 +47,9 @@
           "include": "#version"
         },
         {
+          "include": "#annotation"
+        },
+        {
           "include": "#task-template"
         },
         {
@@ -126,6 +129,28 @@
             },
             "4": {
               "name": "constant.numeric.version.drun"
+            }
+          }
+        }
+      ]
+    },
+    "annotation": {
+      "patterns": [
+        {
+          "name": "meta.annotation.drun",
+          "match": "^(\\s*)(@)([A-Za-z_][A-Za-z0-9_]*)(\\()(.*?)(\\))\\s*$",
+          "captures": {
+            "2": {
+              "name": "punctuation.definition.annotation.drun"
+            },
+            "3": {
+              "name": "entity.name.annotation.drun"
+            },
+            "4": {
+              "name": "punctuation.section.group.begin.drun"
+            },
+            "6": {
+              "name": "punctuation.section.group.end.drun"
             }
           }
         }
@@ -1064,7 +1089,7 @@
         },
         {
           "name": "entity.name.label.platform.drun",
-          "match": "^(\\s*)(darwin|linux|windows)(?=\\s*:)"
+          "match": "^(\\s*)(mac|darwin|linux|windows)(?=\\s*:)"
         },
         {
           "name": "entity.other.attribute-name.drun",

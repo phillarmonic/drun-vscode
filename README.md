@@ -25,6 +25,7 @@ When `xdrun cmd:lsp` is available, the extension starts it automatically over st
 
 - Parser-backed diagnostics
 - Simple keyword and task-name completions
+- Decorator highlighting for annotations like `@platform("linux", "mac")`
 
 If `xdrun` is missing from `PATH`, or the installed binary does not support `cmd:lsp`, the extension falls back to grammar-only behavior.
 

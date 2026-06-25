@@ -2,12 +2,12 @@ version: 2.0
 
 project "spec-coverage" version "1.0.0":
   parameter $environment as string from ["dev", "staging", "production"] defaults to "dev"
-  set platforms as list to ["linux", "darwin", "windows"]
+  set platforms as list to ["linux", "mac", "windows"]
   include snippets, templates from "shared/docker.drun" as docker_ns
   include from drunhub "ops/kubernetes" as k8s
 
   shell config:
-    darwin:
+    mac:
       executable: "/bin/zsh"
       args:
         - "-l"

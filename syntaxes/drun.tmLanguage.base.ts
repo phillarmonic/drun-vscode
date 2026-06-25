@@ -4,6 +4,7 @@ export const baseRepository: Record<string, TextMateRule> = {
   meta: {
     patterns: [
       { include: "#version" },
+      { include: "#annotation" },
       { include: "#task-template" },
       { include: "#task-definition" },
       { include: "#snippet-definition" },
@@ -45,6 +46,20 @@ export const baseRepository: Record<string, TextMateRule> = {
         captures: {
           "2": { name: "keyword.declaration.version.drun" },
           "4": { name: "constant.numeric.version.drun" }
+        }
+      }
+    ]
+  },
+  annotation: {
+    patterns: [
+      {
+        name: "meta.annotation.drun",
+        match: "^(\\s*)(@)([A-Za-z_][A-Za-z0-9_]*)(\\()(.*?)(\\))\\s*$",
+        captures: {
+          "2": { name: "punctuation.definition.annotation.drun" },
+          "3": { name: "entity.name.annotation.drun" },
+          "4": { name: "punctuation.section.group.begin.drun" },
+          "6": { name: "punctuation.section.group.end.drun" }
         }
       }
     ]
@@ -657,7 +672,7 @@ export const baseRepository: Record<string, TextMateRule> = {
       },
       {
         name: "entity.name.label.platform.drun",
-        match: "^(\\s*)(darwin|linux|windows)(?=\\s*:)"
+        match: "^(\\s*)(mac|darwin|linux|windows)(?=\\s*:)"
       },
       {
         name: "entity.other.attribute-name.drun",
