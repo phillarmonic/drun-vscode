@@ -3,6 +3,7 @@ import type { TextMateGrammar, TextMateRule } from "./textmate-types";
 
 const include = (name: string): TextMateRule => ({ include: `#${name}` });
 const wordMatch = (words: readonly string[]) => `\\b(?:${words.join("|")})\\b`;
+const escapeRegex = (value: string) => value.replace(/[|\\{}()[\]^$+*?.-]/g, "\\$&");
 
 const topLevelPatterns = [
   "comments",
@@ -431,6 +432,24 @@ const builtinTypes = [
   "docker_tag"
 ];
 
+const builtinPhrases = [
+  "current git commit",
+  "current git branch",
+  "file exists",
+  "dir exists",
+  "start progress",
+  "update progress",
+  "finish progress",
+  "start timer",
+  "stop timer",
+  "show elapsed time",
+  "docker compose command",
+  "docker compose status",
+  "dns_resolve",
+  "dns_check",
+  "dns_validate"
+];
+
 const builtinFunctions = ["now", "pwd", "hostname", "env", "secret", "current"];
 const transformFunctions = [
   "concat",
@@ -470,6 +489,10 @@ const grammar: TextMateGrammar = {
         {
           name: "support.variable.environment.drun",
           match: "\\$\\{[A-Za-z_][A-Za-z0-9_]*\\}"
+        },
+        {
+          name: "support.function.builtin.drun",
+          match: `\\b(?:${builtinPhrases.map(escapeRegex).join("|")})\\b`
         },
         {
           name: "support.function.builtin.drun",

@@ -1231,6 +1231,10 @@
         },
         {
           "name": "support.function.builtin.drun",
+          "match": "\\b(?:current git commit|current git branch|file exists|dir exists|start progress|update progress|finish progress|start timer|stop timer|show elapsed time|docker compose command|docker compose status|dns_resolve|dns_check|dns_validate)\\b"
+        },
+        {
+          "name": "support.function.builtin.drun",
           "match": "\\b(?:now|pwd|hostname|env|secret|current)(?=\\b|\\.)"
         },
         {
