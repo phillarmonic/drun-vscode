@@ -83,6 +83,9 @@
           "include": "#lifecycle-hooks"
         },
         {
+          "include": "#git-policy"
+        },
+        {
           "include": "#shell-config"
         },
         {
@@ -1101,6 +1104,54 @@
         }
       ]
     },
+    "git-policy": {
+      "patterns": [
+        {
+          "name": "meta.git.policy.drun",
+          "match": "^(\\s*)(git)(\\s+)(policy)(?=\\s*:)",
+          "captures": {
+            "2": {
+              "name": "support.constant.domain.drun"
+            },
+            "4": {
+              "name": "keyword.declaration.config.drun"
+            }
+          }
+        },
+        {
+          "name": "meta.git.validate.drun",
+          "match": "^(\\s*)(git)(\\s+)(validate)(\\s+)(branch(?:[_ ]name)?|commit(?:[_ ]message)?|signed(?:[_ ]commits)?|all)\\b",
+          "captures": {
+            "2": {
+              "name": "support.constant.domain.drun"
+            },
+            "4": {
+              "name": "support.type.action.drun"
+            },
+            "6": {
+              "name": "support.constant.domain.drun"
+            }
+          }
+        },
+        {
+          "name": "meta.git.policy.section.drun",
+          "match": "^(\\s*)(branch|commit)(?=\\s*:)",
+          "captures": {
+            "2": {
+              "name": "support.constant.domain.drun"
+            }
+          }
+        },
+        {
+          "name": "support.type.property-name.drun",
+          "match": "^(\\s*)(default\\s+branches|naming|types|messages|ban|min\\s+length)(?=\\s*:)"
+        },
+        {
+          "name": "storage.modifier.drun",
+          "match": "^(\\s*)(extract\\s+identifier\\s+from\\s+branch|enforce\\s+signed\\s+commits)\\b"
+        }
+      ]
+    },
     "single-quoted": {
       "patterns": [
         {
@@ -1256,7 +1307,7 @@
         },
         {
           "name": "support.function.builtin.drun",
-          "match": "\\b(?:current git commit|current git branch|file exists|dir exists|start progress|update progress|finish progress|start timer|stop timer|show elapsed time|docker compose command|docker compose status|dns_resolve|dns_check|dns_validate)\\b"
+          "match": "\\b(?:current git commit|current git branch|file exists|dir exists|start progress|update progress|finish progress|start timer|stop timer|show elapsed time|compose_cmd|docker compose command|docker compose status|dns_resolve|dns_check|dns_validate)\\b"
         },
         {
           "name": "support.function.builtin.drun",

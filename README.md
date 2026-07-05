@@ -14,6 +14,8 @@ VS Code language support for the [Drun](https://github.com/phillarmonic/drun) au
 - `task`, `project`, `version`, `requires`, `given`, `accepts`, `depends`, `call`, `include`
 - Control flow such as `if` / `else`, `when` / `otherwise`, `for each`, `try`, `catch`, `finally`
 - Detection and constraint forms such as `is/are available`, version checks, file existence checks, and parameter validation operators
+- Git policy syntax including `git policy`, branch/commit policy blocks, and `git validate`
+- Conventional commit policy examples via `messages: "conventional commits"` in the git-policy sample
 - Built-in actions and domain keywords for Docker, Git, HTTP, orchestration, secrets, capture, dependencies, and detection modifiers
 - Double-quoted strings with escapes
 - String interpolation like `{name}` and `{$name}`
@@ -80,4 +82,4 @@ task "deploy":
     success "Build complete"
 ```
 
-For the canonical highlighting coverage fixture, open [samples/spec-coverage.drun](/Users/andy/repos/phillarmonic/drun-vscode/samples/spec-coverage.drun). It is the sample that the grammar assertions track and should be kept aligned with newly supported syntax families.
+For the canonical highlighting coverage fixtures, open [samples/spec-coverage.drun](/Users/andy/repos/phillarmonic/drun-vscode/samples/spec-coverage.drun) and [samples/git-policy.drun](/Users/andy/repos/phillarmonic/drun-vscode/samples/git-policy.drun). They are the samples that the grammar assertions track and should be kept aligned with newly supported syntax families.

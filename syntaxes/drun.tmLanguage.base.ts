@@ -16,6 +16,7 @@ export const baseRepository: Record<string, TextMateRule> = {
       { include: "#include-statement" },
       { include: "#call-task" },
       { include: "#lifecycle-hooks" },
+      { include: "#git-policy" },
       { include: "#shell-config" },
       { include: "#capture-shell" },
       { include: "#env-conditions" },
@@ -681,6 +682,43 @@ export const baseRepository: Record<string, TextMateRule> = {
       {
         name: "punctuation.definition.list-item.drun",
         match: "^\\s*(-)(?=\\s+\")"
+      }
+    ]
+  },
+  "git-policy": {
+    patterns: [
+      {
+        name: "meta.git.policy.drun",
+        match: "^(\\s*)(git)(\\s+)(policy)(?=\\s*:)",
+        captures: {
+          "2": { name: "support.constant.domain.drun" },
+          "4": { name: "keyword.declaration.config.drun" }
+        }
+      },
+      {
+        name: "meta.git.validate.drun",
+        match:
+          "^(\\s*)(git)(\\s+)(validate)(\\s+)(branch(?:[_ ]name)?|commit(?:[_ ]message)?|signed(?:[_ ]commits)?|all)\\b",
+        captures: {
+          "2": { name: "support.constant.domain.drun" },
+          "4": { name: "support.type.action.drun" },
+          "6": { name: "support.constant.domain.drun" }
+        }
+      },
+      {
+        name: "meta.git.policy.section.drun",
+        match: "^(\\s*)(branch|commit)(?=\\s*:)",
+        captures: {
+          "2": { name: "support.constant.domain.drun" }
+        }
+      },
+      {
+        name: "support.type.property-name.drun",
+        match: "^(\\s*)(default\\s+branches|naming|types|messages|ban|min\\s+length)(?=\\s*:)"
+      },
+      {
+        name: "storage.modifier.drun",
+        match: "^(\\s*)(extract\\s+identifier\\s+from\\s+branch|enforce\\s+signed\\s+commits)\\b"
       }
     ]
   },

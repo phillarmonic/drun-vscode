@@ -443,6 +443,7 @@ const builtinPhrases = [
   "start timer",
   "stop timer",
   "show elapsed time",
+  "compose_cmd",
   "docker compose command",
   "docker compose status",
   "dns_resolve",
