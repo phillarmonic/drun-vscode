@@ -44,7 +44,41 @@
       ]
     },
     {
-      "line": 16,
+      "line": 8,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.provisioning-sources.drun",
+        "keyword.declaration.config.drun"
+      ]
+    },
+    {
+      "line": 8,
+      "column": 15,
+      "scopes": [
+        "source.drun",
+        "meta.provisioning-sources.drun",
+        "keyword.declaration.config.drun"
+      ]
+    },
+    {
+      "line": 9,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "string.quoted.double.drun"
+      ]
+    },
+    {
+      "line": 10,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "string.quoted.double.drun"
+      ]
+    },
+    {
+      "line": 19,
       "column": 2,
       "scopes": [
         "source.drun",
@@ -52,7 +86,7 @@
       ]
     },
     {
-      "line": 20,
+      "line": 23,
       "column": 19,
       "scopes": [
         "source.drun",
@@ -61,7 +95,7 @@
       ]
     },
     {
-      "line": 23,
+      "line": 26,
       "column": 0,
       "scopes": [
         "source.drun",
@@ -74,12 +108,36 @@
       "column": 2,
       "scopes": [
         "source.drun",
+        "keyword.declaration.parameter.drun"
+      ]
+    },
+    {
+      "line": 35,
+      "column": 29,
+      "scopes": [
+        "source.drun",
+        "storage.modifier.drun"
+      ]
+    },
+    {
+      "line": 36,
+      "column": 31,
+      "scopes": [
+        "source.drun",
+        "storage.modifier.drun"
+      ]
+    },
+    {
+      "line": 40,
+      "column": 2,
+      "scopes": [
+        "source.drun",
         "meta.dependency.declaration.drun",
         "keyword.declaration.drun"
       ]
     },
     {
-      "line": 34,
+      "line": 40,
       "column": 35,
       "scopes": [
         "source.drun",
@@ -87,7 +145,7 @@
       ]
     },
     {
-      "line": 34,
+      "line": 40,
       "column": 13,
       "scopes": [
         "source.drun",
@@ -95,7 +153,7 @@
       ]
     },
     {
-      "line": 34,
+      "line": 40,
       "column": 24,
       "scopes": [
         "source.drun",
@@ -103,7 +161,7 @@
       ]
     },
     {
-      "line": 36,
+      "line": 42,
       "column": 2,
       "scopes": [
         "source.drun",
@@ -112,7 +170,7 @@
       ]
     },
     {
-      "line": 35,
+      "line": 41,
       "column": 15,
       "scopes": [
         "source.drun",
@@ -121,7 +179,7 @@
       ]
     },
     {
-      "line": 36,
+      "line": 42,
       "column": 6,
       "scopes": [
         "source.drun",
@@ -130,7 +188,7 @@
       ]
     },
     {
-      "line": 36,
+      "line": 42,
       "column": 15,
       "scopes": [
         "source.drun",
@@ -139,7 +197,7 @@
       ]
     },
     {
-      "line": 33,
+      "line": 39,
       "column": 14,
       "scopes": [
         "source.drun",
@@ -148,7 +206,7 @@
       ]
     },
     {
-      "line": 38,
+      "line": 44,
       "column": 2,
       "scopes": [
         "source.drun",
@@ -157,7 +215,7 @@
       ]
     },
     {
-      "line": 40,
+      "line": 46,
       "column": 2,
       "scopes": [
         "source.drun",
@@ -166,7 +224,7 @@
       ]
     },
     {
-      "line": 43,
+      "line": 49,
       "column": 15,
       "scopes": [
         "source.drun",
@@ -175,7 +233,7 @@
       ]
     },
     {
-      "line": 24,
+      "line": 27,
       "column": 48,
       "scopes": [
         "source.drun",
@@ -184,7 +242,7 @@
       ]
     },
     {
-      "line": 27,
+      "line": 30,
       "column": 7,
       "scopes": [
         "source.drun",
@@ -193,19 +251,10 @@
       ]
     },
     {
-      "line": 50,
+      "line": 56,
       "column": 20,
       "scopes": [
         "source.drun",
-        "keyword.control.drun"
-      ]
-    },
-    {
-      "line": 52,
-      "column": 2,
-      "scopes": [
-        "source.drun",
-        "meta.control.statement.drun",
         "keyword.control.drun"
       ]
     },
@@ -219,7 +268,16 @@
       ]
     },
     {
-      "line": 59,
+      "line": 64,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.control.statement.drun",
+        "keyword.control.drun"
+      ]
+    },
+    {
+      "line": 65,
       "column": 4,
       "scopes": [
         "source.drun",
@@ -228,7 +286,7 @@
       ]
     },
     {
-      "line": 59,
+      "line": 65,
       "column": 30,
       "scopes": [
         "source.drun",
@@ -237,7 +295,7 @@
       ]
     },
     {
-      "line": 63,
+      "line": 69,
       "column": 25,
       "scopes": [
         "source.drun",
@@ -246,7 +304,7 @@
       ]
     },
     {
-      "line": 64,
+      "line": 70,
       "column": 44,
       "scopes": [
         "source.drun",
@@ -255,7 +313,7 @@
       ]
     },
     {
-      "line": 65,
+      "line": 71,
       "column": 2,
       "scopes": [
         "source.drun",
@@ -264,7 +322,7 @@
       ]
     },
     {
-      "line": 65,
+      "line": 71,
       "column": 39,
       "scopes": [
         "source.drun",
@@ -272,7 +330,7 @@
       ]
     },
     {
-      "line": 66,
+      "line": 72,
       "column": 66,
       "scopes": [
         "source.drun",
@@ -280,7 +338,7 @@
       ]
     },
     {
-      "line": 67,
+      "line": 73,
       "column": 67,
       "scopes": [
         "source.drun",
@@ -288,7 +346,7 @@
       ]
     },
     {
-      "line": 82,
+      "line": 88,
       "column": 2,
       "scopes": [
         "source.drun",
@@ -296,7 +354,7 @@
       ]
     },
     {
-      "line": 78,
+      "line": 84,
       "column": 9,
       "scopes": [
         "source.drun",
@@ -304,7 +362,7 @@
       ]
     },
     {
-      "line": 83,
+      "line": 89,
       "column": 11,
       "scopes": [
         "source.drun",
@@ -312,7 +370,7 @@
       ]
     },
     {
-      "line": 87,
+      "line": 93,
       "column": 30,
       "scopes": [
         "source.drun",
@@ -321,7 +379,7 @@
       ]
     },
     {
-      "line": 90,
+      "line": 96,
       "column": 40,
       "scopes": [
         "source.drun",
@@ -329,7 +387,7 @@
       ]
     },
     {
-      "line": 92,
+      "line": 98,
       "column": 40,
       "scopes": [
         "source.drun",
@@ -338,7 +396,7 @@
       ]
     },
     {
-      "line": 91,
+      "line": 97,
       "column": 27,
       "scopes": [
         "source.drun",

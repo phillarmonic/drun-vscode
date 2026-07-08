@@ -5,6 +5,9 @@ project "spec-coverage" version "1.0.0":
   set platforms as list to ["linux", "mac", "windows"]
   include snippets, templates from "shared/docker.drun" as docker_ns
   include from drunhub "ops/kubernetes" as k8s
+  provisioning sources:
+    "./.drun/provisionings.yaml"
+    "github:acme/devx-catalog/catalog/provisionings.yaml@main"
 
   shell config:
     mac:
@@ -28,6 +31,9 @@ template task "docker-build":
 
 task "run-action":
   given $iterations defaults to "1"
+  requires tools:
+    golangci-lint >= "1.64" provision
+    gosec >= "2.22" <= "2.22" provision
   info "Running {$iterations} iteration(s)"
 
 task "deploy" means "Exercise grammar coverage":

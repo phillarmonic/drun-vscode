@@ -17,6 +17,7 @@ export const baseRepository: Record<string, TextMateRule> = {
       { include: "#call-task" },
       { include: "#lifecycle-hooks" },
       { include: "#git-policy" },
+      { include: "#provisioning-sources" },
       { include: "#shell-config" },
       { include: "#capture-shell" },
       { include: "#env-conditions" },
@@ -682,6 +683,22 @@ export const baseRepository: Record<string, TextMateRule> = {
       {
         name: "punctuation.definition.list-item.drun",
         match: "^\\s*(-)(?=\\s+\")"
+      }
+    ]
+  },
+  "provisioning-sources": {
+    patterns: [
+      {
+        name: "meta.provisioning-sources.drun",
+        match: "^(\\s*)(provisioning)(\\s+)(sources)(?=\\s*:)",
+        captures: {
+          "2": { name: "keyword.declaration.config.drun" },
+          "4": { name: "keyword.declaration.config.drun" }
+        }
+      },
+      {
+        name: "storage.modifier.drun",
+        match: "\\bprovision\\b"
       }
     ]
   },
