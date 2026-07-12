@@ -24,13 +24,9 @@ Try a small task:
 ```drun
 version: 2.0
 
-task "deploy":
-  given $environment defaults to "staging" from ["dev", "staging", "production"]
-
-  step "Deploying to {$environment}"
-  if docker is available:
-    build docker image "myapp:{environment}"
-    success "Build complete"
+task "hello":
+  step "Hello from Drun"
+  run "echo Hello from the shell"
 ```
 
 Run it from your project directory with `xdrun`.
