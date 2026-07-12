@@ -1,6 +1,6 @@
 {
   "name": "drun-language-support",
-  "displayName": "Drun Language Support",
+  "displayName": "Drun Automation Language Support",
   "description": "Syntax highlighting and editor support for the Drun automation language.",
   "version": "1.0.0",
   "publisher": "phillarmonic",
