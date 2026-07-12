@@ -2,7 +2,7 @@
   "name": "drun-language-support",
   "displayName": "Drun Automation Language Support",
   "description": "Syntax highlighting and editor support for the Drun automation language.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "phillarmonic",
   "license": "MIT",
   "icon": "images/drun128white.png",
