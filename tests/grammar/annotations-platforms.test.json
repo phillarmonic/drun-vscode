@@ -1,0 +1,58 @@
+{
+  "file": "samples/annotations-platforms.drun",
+  "assertions": [
+    {
+      "line": 5,
+      "column": 4,
+      "scopes": [
+        "source.drun",
+        "entity.name.label.platform.drun"
+      ]
+    },
+    {
+      "line": 8,
+      "column": 0,
+      "scopes": [
+        "source.drun",
+        "meta.annotation.drun",
+        "punctuation.definition.annotation.drun"
+      ]
+    },
+    {
+      "line": 8,
+      "column": 1,
+      "scopes": [
+        "source.drun",
+        "meta.annotation.drun",
+        "entity.name.annotation.drun"
+      ]
+    },
+    {
+      "line": 9,
+      "column": 0,
+      "scopes": [
+        "source.drun",
+        "meta.definition.task.drun",
+        "keyword.declaration.task.drun"
+      ]
+    },
+    {
+      "line": 16,
+      "column": 0,
+      "scopes": [
+        "source.drun",
+        "meta.annotation.drun",
+        "punctuation.definition.annotation.drun"
+      ]
+    },
+    {
+      "line": 17,
+      "column": 0,
+      "scopes": [
+        "source.drun",
+        "meta.definition.snippet.drun",
+        "keyword.declaration.snippet.drun"
+      ]
+    }
+  ]
+}

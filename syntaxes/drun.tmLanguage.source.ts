@@ -1,0 +1,618 @@
+import { baseRepository } from "./drun.tmLanguage.base";
+import type { TextMateGrammar, TextMateRule } from "./textmate-types";
+
+const include = (name: string): TextMateRule => ({ include: `#${name}` });
+const wordMatch = (words: readonly string[]) => `\\b(?:${words.join("|")})\\b`;
+const escapeRegex = (value: string) => value.replace(/[|\\{}()[\]^$+*?.-]/g, "\\$&");
+
+const topLevelPatterns = [
+  "comments",
+  "meta",
+  "strings",
+  "single-quoted",
+  "variables",
+  "builtins",
+  "constants",
+  "functions",
+  "types",
+  "keywords",
+  "operators",
+  "punctuation"
+].map(include);
+
+const declarationKeywords = [
+  "version",
+  "task",
+  "means",
+  "mode",
+  "project",
+  "provisioning",
+  "sources",
+  "set",
+  "let",
+  "define",
+  "parameter",
+  "snippet",
+  "template",
+  "mixin",
+  "requires",
+  "tools",
+  "given",
+  "accepts",
+  "defaults",
+  "from",
+  "to",
+  "as",
+  "of",
+  "depends",
+  "include",
+  "use",
+  "uses",
+  "includes",
+  "call",
+  "with",
+  "capture",
+  "service"
+];
+
+const controlKeywords = [
+  "if",
+  "else",
+  "when",
+  "otherwise",
+  "for",
+  "each",
+  "in",
+  "parallel",
+  "try",
+  "catch",
+  "finally",
+  "throw",
+  "rethrow",
+  "ignore",
+  "break",
+  "continue",
+  "before",
+  "after",
+  "on",
+  "then",
+  "and",
+  "or",
+  "not",
+  "is",
+  "are",
+  "contains",
+  "matches",
+  "matching",
+  "between",
+  "exists",
+  "available",
+  "running",
+  "detected",
+  "version"
+];
+
+const wordOperators = [
+  "be",
+  "into",
+  "at",
+  "by",
+  "on",
+  "off",
+  "up",
+  "down",
+  "with",
+  "without",
+  "from",
+  "to",
+  "as",
+  "of",
+  "range",
+  "then",
+  "starting",
+  "extract",
+  "remove",
+  "overwrite"
+];
+
+const actionTypes = [
+  "info",
+  "step",
+  "warn",
+  "error",
+  "success",
+  "fail",
+  "echo",
+  "run",
+  "exec",
+  "shell",
+  "output",
+  "config",
+  "create",
+  "copy",
+  "move",
+  "delete",
+  "read",
+  "write",
+  "append",
+  "backup",
+  "check",
+  "extract",
+  "archive",
+  "build",
+  "push",
+  "pull",
+  "tag",
+  "remove",
+  "start",
+  "starting",
+  "stop",
+  "scale",
+  "deploy",
+  "rollback",
+  "wait",
+  "open",
+  "ping",
+  "test",
+  "expect",
+  "download",
+  "upload",
+  "send",
+  "receive",
+  "fetch",
+  "clone",
+  "init",
+  "switch",
+  "merge",
+  "add",
+  "commit",
+  "status",
+  "log",
+  "show",
+  "detect",
+  "search",
+  "update",
+  "restart",
+  "orchestrate",
+  "execute",
+  "apply",
+  "describe",
+  "expose"
+];
+
+const domainConstants = [
+  "drun",
+  "drunhub",
+  "setup",
+  "teardown",
+  "docker",
+  "image",
+  "container",
+  "compose",
+  "replicas",
+  "rollout",
+  "pods",
+  "pod",
+  "ingress",
+  "manifest",
+  "manifests",
+  "namespace",
+  "port",
+  "registry",
+  "git",
+  "branch",
+  "checkout",
+  "repository",
+  "remote",
+  "changes",
+  "message",
+  "files",
+  "get",
+  "post",
+  "put",
+  "delete",
+  "patch",
+  "head",
+  "options",
+  "request",
+  "response",
+  "body",
+  "headers",
+  "header",
+  "endpoint",
+  "api",
+  "data",
+  "timeout",
+  "retry",
+  "follow",
+  "redirects",
+  "verify",
+  "ssl",
+  "auth",
+  "bearer",
+  "basic",
+  "token",
+  "user",
+  "password",
+  "content",
+  "type",
+  "accept",
+  "health",
+  "healthy",
+  "service",
+  "services",
+  "provision",
+  "ready",
+  "host",
+  "connection",
+  "strategy",
+  "sequential",
+  "parallel",
+  "dependency-based",
+  "circuit",
+  "breaker",
+  "failure",
+  "threshold",
+  "recovery",
+  "interval",
+  "retries",
+  "networks",
+  "external",
+  "required",
+  "autoprovision",
+  "driver",
+  "condition",
+  "dns",
+  "tcp",
+  "domain",
+  "record",
+  "expected",
+  "ip",
+  "ips",
+  "command",
+  "working",
+  "workdir",
+  "missing",
+  "force",
+  "recreate",
+  "deps",
+  "never",
+  "always",
+  "makefile",
+  "target",
+  "args",
+  "pre",
+  "post",
+  "jobs",
+  "verbose",
+  "allocate_tty",
+  "ssh",
+  "key",
+  "fallback",
+  "delay",
+  "path",
+  "startup",
+  "shutdown",
+  "discovery",
+  "metrics",
+  "enabled",
+  "labels",
+  "unavailable",
+  "max",
+  "min",
+  "consul",
+  "etcd",
+  "server",
+  "domains",
+  "ttl",
+  "cache",
+  "memory",
+  "cpu",
+  "limit",
+  "policy",
+  "orphans",
+  "period",
+  "env_file",
+  "available",
+  "installed",
+  "tool",
+  "tools",
+  "framework",
+  "environment",
+  "node",
+  "npm",
+  "yarn",
+  "pnpm",
+  "bun",
+  "python",
+  "pip",
+  "go",
+  "golang",
+  "cargo",
+  "java",
+  "maven",
+  "gradle",
+  "ruby",
+  "gem",
+  "php",
+  "composer",
+  "rust",
+  "make",
+  "kubectl",
+  "helm",
+  "terraform",
+  "aws",
+  "gcp",
+  "azure",
+  "ci",
+  "local",
+  "production",
+  "staging",
+  "development",
+  "react",
+  "vue",
+  "angular",
+  "django",
+  "rails",
+  "express",
+  "spring",
+  "laravel",
+  "line",
+  "match",
+  "pattern",
+  "email",
+  "format",
+  "concat",
+  "split",
+  "replace",
+  "secret",
+  "trim",
+  "uppercase",
+  "lowercase",
+  "prepend",
+  "join",
+  "slice",
+  "length",
+  "keys",
+  "values",
+  "transform",
+  "subtract",
+  "multiply",
+  "divide",
+  "modulo",
+  "property",
+  "filtered",
+  "sorted",
+  "reversed",
+  "unique",
+  "first",
+  "last",
+  "basename",
+  "dirname",
+  "extension",
+  "prefix",
+  "suffix",
+  "allow",
+  "permissions",
+  "dir",
+  "file",
+  "folder",
+  "any",
+  "running",
+  "current",
+  "all",
+  "exists",
+  "locally",
+  "attached"
+];
+
+const builtinTypes = [
+  "string",
+  "number",
+  "boolean",
+  "list",
+  "json",
+  "xml",
+  "http",
+  "https",
+  "docker",
+  "git",
+  "kubernetes",
+  "namespace",
+  "network",
+  "directory",
+  "file",
+  "service",
+  "container",
+  "image",
+  "repository",
+  "branch",
+  "url",
+  "email",
+  "uuid",
+  "semver",
+  "semver_extended",
+  "docker_tag"
+];
+
+const builtinPhrases = [
+  "current git commit",
+  "current git branch",
+  "file exists",
+  "dir exists",
+  "start progress",
+  "update progress",
+  "finish progress",
+  "start timer",
+  "stop timer",
+  "show elapsed time",
+  "compose_cmd",
+  "docker compose command",
+  "docker compose status",
+  "dns_resolve",
+  "dns_check",
+  "dns_validate"
+];
+
+const builtinFunctions = ["now", "pwd", "hostname", "env", "secret", "current"];
+const transformFunctions = [
+  "concat",
+  "split",
+  "replace",
+  "trim",
+  "uppercase",
+  "lowercase",
+  "prepend",
+  "join",
+  "slice",
+  "length",
+  "keys",
+  "values",
+  "basename",
+  "dirname",
+  "extension",
+  "prefix",
+  "suffix",
+  "filtered",
+  "sorted",
+  "reversed",
+  "unique",
+  "first",
+  "last"
+];
+
+const grammar: TextMateGrammar = {
+  $schema: "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  name: "drun",
+  scopeName: "source.drun",
+  patterns: topLevelPatterns,
+  repository: {
+    ...baseRepository,
+    builtins: {
+      patterns: [
+        {
+          name: "support.variable.environment.drun",
+          match: "\\$\\{[A-Za-z_][A-Za-z0-9_]*\\}"
+        },
+        {
+          name: "support.function.builtin.drun",
+          match: `\\b(?:${builtinPhrases.map(escapeRegex).join("|")})\\b`
+        },
+        {
+          name: "support.function.builtin.drun",
+          match: `\\b(?:${builtinFunctions.join("|")})(?=\\b|\\.)`
+        },
+        {
+          name: "support.function.builtin.drun",
+          match: `\\b(?:${transformFunctions.join("|")})\\b`
+        },
+        {
+          name: "support.function.builtin.drun",
+          match: "\\b(?:secret)(?=\\s*\\()"
+        },
+        {
+          name: "variable.other.member.drun",
+          match: "(?<=\\.)[A-Za-z_][A-Za-z0-9_]*\\b"
+        }
+      ]
+    },
+    constants: {
+      patterns: [
+        {
+          name: "constant.language.boolean.drun",
+          match: "\\b(?:true|false|empty)\\b"
+        },
+        {
+          name: "constant.numeric.drun",
+          match: "\\b\\d+(?:\\.\\d+)?\\b"
+        }
+      ]
+    },
+    functions: {
+      patterns: [
+        {
+          name: "support.function.drun",
+          match: "\\b[A-Za-z_][A-Za-z0-9_\\-]*(?=\\s*\\()"
+        }
+      ]
+    },
+    types: {
+      patterns: [
+        {
+          name: "storage.type.drun",
+          match: wordMatch(builtinTypes)
+        }
+      ]
+    },
+    keywords: {
+      patterns: [
+        {
+          name: "keyword.control.drun",
+          match: wordMatch(controlKeywords)
+        },
+        {
+          name: "keyword.declaration.drun",
+          match: wordMatch(declarationKeywords)
+        },
+        {
+          name: "keyword.operator.word.drun",
+          match: wordMatch(wordOperators)
+        },
+        {
+          name: "support.type.action.drun",
+          match: wordMatch(actionTypes)
+        },
+        {
+          name: "support.constant.domain.drun",
+          match: wordMatch(domainConstants)
+        }
+      ]
+    },
+    operators: {
+      patterns: [
+        {
+          name: "keyword.operator.comparison.drun",
+          match: "==|!=|<=|>=|<|>"
+        },
+        {
+          name: "keyword.operator.ternary.drun",
+          match: "\\?|:"
+        },
+        {
+          name: "keyword.operator.pipe.drun",
+          match: "\\|"
+        },
+        {
+          name: "keyword.operator.assignment.drun",
+          match: "="
+        },
+        {
+          name: "keyword.operator.arithmetic.drun",
+          match: "\\+|\\-|\\*|/|%"
+        }
+      ]
+    },
+    punctuation: {
+      patterns: [
+        {
+          name: "punctuation.separator.key-value.drun",
+          match: ":"
+        },
+        {
+          name: "punctuation.separator.sequence.drun",
+          match: ","
+        },
+        {
+          name: "punctuation.section.group.begin.drun",
+          match: "[\\[\\(\\{]"
+        },
+        {
+          name: "punctuation.section.group.end.drun",
+          match: "[\\]\\)\\}]"
+        }
+      ]
+    }
+  }
+};
+
+export default grammar;

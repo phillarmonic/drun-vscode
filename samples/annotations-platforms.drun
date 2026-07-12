@@ -1,0 +1,18 @@
+version: 2.0
+
+project "annotations":
+  shell config:
+    mac:
+      executable: "/bin/zsh"
+
+@platform("linux", "mac")
+task "shell" means "Open the default shell":
+  run "bash" attached
+
+@platform("windows")
+task "shell" means "Open PowerShell":
+  run "pwsh.exe" attached
+
+@platform("darwin")
+snippet "legacy-mac":
+  info "legacy alias still highlights"

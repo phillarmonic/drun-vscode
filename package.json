@@ -1,0 +1,86 @@
+{
+  "name": "drun-language-support",
+  "displayName": "Drun Automation Language Support",
+  "description": "Syntax highlighting and editor support for the Drun automation language.",
+  "version": "1.0.0",
+  "publisher": "phillarmonic",
+  "license": "MIT",
+  "main": "./dist/extension.js",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "activationEvents": [
+    "onLanguage:drun"
+  ],
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "drun",
+    "automation",
+    "dsl",
+    "textmate"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phillarmonic/drun-vscode"
+  },
+  "scripts": {
+    "build:extension:typecheck": "tsc -p ./tsconfig.json --noEmit",
+    "build:extension:compile": "pnpm run build:extension:typecheck && node ./scripts/build-extension.js",
+    "build:grammar:compile": "tsc -p ./tsconfig.grammar.json",
+    "build:grammar": "pnpm run build:grammar:compile && node ./.build/scripts/build-grammar.js",
+    "compile": "pnpm run build:grammar && pnpm run build:extension:compile",
+    "validate:json": "pnpm run compile && node ./.build/scripts/validate-json.js",
+    "test:grammar": "pnpm run build:grammar && node ./.build/scripts/test-grammar.js",
+    "test": "pnpm run validate:json && pnpm run test:grammar",
+    "vscode:prepublish": "pnpm run compile",
+    "package:vsix": "node ./scripts/package-vsix.js"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.10",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.28.1",
+    "typescript": "^5.8.3",
+    "vscode-languageclient": "^9.0.1",
+    "vscode-oniguruma": "^2.0.1",
+    "vscode-textmate": "^9.2.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "drun",
+        "aliases": [
+          "Drun",
+          "drun"
+        ],
+        "extensions": [
+          ".drun"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "drun",
+        "scopeName": "source.drun",
+        "path": "./syntaxes/drun.tmLanguage.json"
+      }
+    ],
+    "configuration": {
+      "title": "Drun",
+      "properties": {
+        "drun.enableLanguageServer": {
+          "type": "boolean",
+          "default": true,
+          "description": "Start the Drun language server with `xdrun cmd:lsp` when an eligible xdrun executable is available."
+        },
+        "drun.xdrunPath": {
+          "type": "string",
+          "default": "xdrun",
+          "description": "Path or command name for the xdrun executable used to launch the Drun language server."
+        }
+      }
+    }
+  }
+}

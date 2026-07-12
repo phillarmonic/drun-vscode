@@ -1,0 +1,408 @@
+{
+  "file": "samples/spec-coverage.drun",
+  "assertions": [
+    {
+      "line": 4,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "keyword.declaration.parameter.drun"
+      ]
+    },
+    {
+      "line": 4,
+      "column": 73,
+      "scopes": [
+        "source.drun",
+        "storage.modifier.drun"
+      ]
+    },
+    {
+      "line": 6,
+      "column": 10,
+      "scopes": [
+        "source.drun",
+        "entity.name.type.import-selector.drun"
+      ]
+    },
+    {
+      "line": 6,
+      "column": 56,
+      "scopes": [
+        "source.drun",
+        "meta.include.alias.drun",
+        "keyword.control.import.drun"
+      ]
+    },
+    {
+      "line": 6,
+      "column": 59,
+      "scopes": [
+        "source.drun",
+        "meta.include.alias.drun",
+        "entity.name.type.namespace.drun"
+      ]
+    },
+    {
+      "line": 8,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.provisioning-sources.drun",
+        "keyword.declaration.config.drun"
+      ]
+    },
+    {
+      "line": 8,
+      "column": 15,
+      "scopes": [
+        "source.drun",
+        "meta.provisioning-sources.drun",
+        "keyword.declaration.config.drun"
+      ]
+    },
+    {
+      "line": 9,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "string.quoted.double.drun"
+      ]
+    },
+    {
+      "line": 10,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "string.quoted.double.drun"
+      ]
+    },
+    {
+      "line": 19,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "keyword.control.lifecycle.drun"
+      ]
+    },
+    {
+      "line": 23,
+      "column": 19,
+      "scopes": [
+        "source.drun",
+        "meta.interpolation.drun",
+        "variable.language.globals.drun"
+      ]
+    },
+    {
+      "line": 26,
+      "column": 0,
+      "scopes": [
+        "source.drun",
+        "meta.definition.template-task.drun",
+        "keyword.declaration.template.drun"
+      ]
+    },
+    {
+      "line": 34,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "keyword.declaration.parameter.drun"
+      ]
+    },
+    {
+      "line": 35,
+      "column": 29,
+      "scopes": [
+        "source.drun",
+        "storage.modifier.drun"
+      ]
+    },
+    {
+      "line": 36,
+      "column": 31,
+      "scopes": [
+        "source.drun",
+        "storage.modifier.drun"
+      ]
+    },
+    {
+      "line": 40,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.dependency.declaration.drun",
+        "keyword.declaration.drun"
+      ]
+    },
+    {
+      "line": 40,
+      "column": 35,
+      "scopes": [
+        "source.drun",
+        "storage.modifier.drun"
+      ]
+    },
+    {
+      "line": 40,
+      "column": 13,
+      "scopes": [
+        "source.drun",
+        "entity.name.function.task.drun"
+      ]
+    },
+    {
+      "line": 40,
+      "column": 24,
+      "scopes": [
+        "source.drun",
+        "entity.name.function.task.drun"
+      ]
+    },
+    {
+      "line": 42,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.workdir.drun",
+        "keyword.control.import.drun"
+      ]
+    },
+    {
+      "line": 41,
+      "column": 15,
+      "scopes": [
+        "source.drun",
+        "meta.use-snippet.drun",
+        "entity.name.function.snippet.drun"
+      ]
+    },
+    {
+      "line": 42,
+      "column": 6,
+      "scopes": [
+        "source.drun",
+        "meta.workdir.drun",
+        "storage.type.workspace.drun"
+      ]
+    },
+    {
+      "line": 42,
+      "column": 15,
+      "scopes": [
+        "source.drun",
+        "meta.workdir.drun",
+        "string.quoted.double.path.drun"
+      ]
+    },
+    {
+      "line": 39,
+      "column": 14,
+      "scopes": [
+        "source.drun",
+        "meta.definition.task-description.drun",
+        "keyword.declaration.description.drun"
+      ]
+    },
+    {
+      "line": 44,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.variable.declaration.drun",
+        "keyword.declaration.drun"
+      ]
+    },
+    {
+      "line": 46,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.capture.expression.drun",
+        "keyword.declaration.drun"
+      ]
+    },
+    {
+      "line": 49,
+      "column": 15,
+      "scopes": [
+        "source.drun",
+        "meta.capture.shell.inline.drun",
+        "support.type.action.drun"
+      ]
+    },
+    {
+      "line": 27,
+      "column": 48,
+      "scopes": [
+        "source.drun",
+        "meta.interpolation.drun",
+        "support.function.builtin.drun"
+      ]
+    },
+    {
+      "line": 30,
+      "column": 7,
+      "scopes": [
+        "source.drun",
+        "meta.shell.inline.drun",
+        "support.function.command.drun"
+      ]
+    },
+    {
+      "line": 56,
+      "column": 20,
+      "scopes": [
+        "source.drun",
+        "keyword.control.drun"
+      ]
+    },
+    {
+      "line": 58,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.control.statement.drun",
+        "keyword.control.drun"
+      ]
+    },
+    {
+      "line": 64,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.control.statement.drun",
+        "keyword.control.drun"
+      ]
+    },
+    {
+      "line": 65,
+      "column": 4,
+      "scopes": [
+        "source.drun",
+        "meta.call.task.drun",
+        "keyword.control.call.drun"
+      ]
+    },
+    {
+      "line": 65,
+      "column": 30,
+      "scopes": [
+        "source.drun",
+        "meta.call.task.argument.drun",
+        "variable.parameter.drun"
+      ]
+    },
+    {
+      "line": 69,
+      "column": 25,
+      "scopes": [
+        "source.drun",
+        "meta.shell.inline.drun",
+        "keyword.operator.word.drun"
+      ]
+    },
+    {
+      "line": 70,
+      "column": 44,
+      "scopes": [
+        "source.drun",
+        "meta.service-scoped-shell.drun",
+        "keyword.operator.word.drun"
+      ]
+    },
+    {
+      "line": 71,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.http.action.drun",
+        "support.type.action.drun"
+      ]
+    },
+    {
+      "line": 71,
+      "column": 39,
+      "scopes": [
+        "source.drun",
+        "storage.modifier.drun"
+      ]
+    },
+    {
+      "line": 72,
+      "column": 66,
+      "scopes": [
+        "source.drun",
+        "storage.modifier.drun"
+      ]
+    },
+    {
+      "line": 73,
+      "column": 67,
+      "scopes": [
+        "source.drun",
+        "storage.modifier.drun"
+      ]
+    },
+    {
+      "line": 88,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "support.type.property-name.drun"
+      ]
+    },
+    {
+      "line": 84,
+      "column": 9,
+      "scopes": [
+        "source.drun",
+        "storage.type.drun"
+      ]
+    },
+    {
+      "line": 89,
+      "column": 11,
+      "scopes": [
+        "source.drun",
+        "support.constant.domain.drun"
+      ]
+    },
+    {
+      "line": 93,
+      "column": 30,
+      "scopes": [
+        "source.drun",
+        "meta.orchestration.action.drun",
+        "storage.modifier.drun"
+      ]
+    },
+    {
+      "line": 96,
+      "column": 40,
+      "scopes": [
+        "source.drun",
+        "entity.name.type.service.drun"
+      ]
+    },
+    {
+      "line": 98,
+      "column": 40,
+      "scopes": [
+        "source.drun",
+        "meta.orchestration.modifier.drun",
+        "storage.modifier.drun"
+      ]
+    },
+    {
+      "line": 97,
+      "column": 27,
+      "scopes": [
+        "source.drun",
+        "meta.orchestration.action.drun",
+        "support.type.action.drun"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "file": "samples/detection-running.drun",
+  "assertions": [
+    {
+      "line": 4,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "storage.type.drun"
+      ]
+    },
+    {
+      "line": 4,
+      "column": 12,
+      "scopes": [
+        "source.drun",
+        "keyword.control.drun"
+      ]
+    },
+    {
+      "line": 4,
+      "column": 20,
+      "scopes": [
+        "source.drun",
+        "keyword.control.drun"
+      ]
+    }
+  ]
+}

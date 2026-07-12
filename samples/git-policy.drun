@@ -1,0 +1,20 @@
+version: 2.0
+
+project "git-policy-sample" version "1.0.0":
+  git policy:
+    branch:
+      default branches: "main", "develop"
+      naming: "{type}/{identifier}-{description}"
+      types: "feat", "fix", "chore"
+    commit:
+      messages: "conventional commits"
+      ban: "WIP", "fixup"
+      min length: 10
+      extract identifier from branch
+      enforce signed commits
+
+task "validate-policy":
+  git validate branch name
+  git validate commit message
+  git validate signed commits
+  git validate all

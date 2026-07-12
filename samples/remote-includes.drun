@@ -1,0 +1,11 @@
+version: 2.0
+
+project "remote-includes":
+  include "github:owner/repo/shared/workflow.drun@main"
+  include "https://example.com/shared/tasks.drun"
+  include from drunhub "ops/kubernetes" as k8s
+  include snippets, templates from "shared/docker.drun" as docker
+
+task "deploy":
+  use snippet "docker.check-login"
+  call task "k8s.deploy" with namespace="production"

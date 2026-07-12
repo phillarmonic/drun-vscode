@@ -1,0 +1,7 @@
+version: 2.0
+
+task "runtime-check":
+  if docker is not running:
+    fail "Docker daemon is not reachable"
+  else:
+    info "Docker runtime is ready"

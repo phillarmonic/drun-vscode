@@ -1,0 +1,26 @@
+version: 2.0
+
+service "api" in "./services/api":
+  repository:
+    url "https://github.com/acme/api.git"
+    branch "main"
+  build:
+    required true
+    command "npm install && npm run build"
+    allocate_tty true
+  health check:
+    type "http"
+    endpoint "http://localhost:8080/health"
+    timeout "10s"
+    interval "2s"
+    retries 5
+    condition "200"
+
+orchestrate "full_stack":
+  services ["api"]
+  strategy "dependency-based"
+  circuit_breaker true
+  dns_checks ["api.local"]
+
+task "resume":
+  orchestrate "full_stack" up starting from "api"

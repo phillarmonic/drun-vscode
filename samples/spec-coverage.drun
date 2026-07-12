@@ -1,0 +1,99 @@
+version: 2.0
+
+project "spec-coverage" version "1.0.0":
+  parameter $environment as string from ["dev", "staging", "production"] defaults to "dev"
+  set platforms as list to ["linux", "mac", "windows"]
+  include snippets, templates from "shared/docker.drun" as docker_ns
+  include from drunhub "ops/kubernetes" as k8s
+  provisioning sources:
+    "./.drun/provisionings.yaml"
+    "github:acme/devx-catalog/catalog/provisionings.yaml@main"
+
+  shell config:
+    mac:
+      executable: "/bin/zsh"
+      args:
+        - "-l"
+        - "-i"
+
+  before any task:
+    info "Preparing {$globals.current_task}"
+
+  snippet "show-context":
+    info "Project {$globals.project} v{$globals.version}"
+    info "Environment {$environment}"
+
+template task "docker-build":
+  given $tag defaults to "{current git branch | replace '/' by '-'}"
+  given $push as boolean defaults to "false"
+
+  run "docker build {$push ? '--push' : ''} -t myapp:{$tag} ."
+
+task "run-action":
+  given $iterations defaults to "1"
+  requires tools:
+    golangci-lint >= "1.64" provision
+    gosec >= "2.22" <= "2.22" provision
+  info "Running {$iterations} iteration(s)"
+
+task "deploy" means "Exercise grammar coverage":
+  depends on build then smoke_test in parallel
+  use snippet "show-context"
+  use workdir "frontend"
+
+  let $config = { port: 8080, host: "localhost" }
+  let release_channel be "stable"
+  capture current_branch from "{current git branch}"
+  capture from shell "whoami" as $current_user
+
+  capture from shell as $build_info:
+    echo "User: {$current_user}"
+    echo "Date: $(date)"
+
+  for each $platform in $globals.platforms:
+    info "Platform {$platform}"
+
+  if docker,kubectl are available and version >= "1.30":
+    info "Container tooling is ready"
+  else:
+    if file "Dockerfile" exists:
+      info "Falling back to Dockerfile build flow"
+    else:
+      warn "No container build flow detected"
+
+  when $environment is not empty:
+    call task run-action with iterations=100
+  otherwise:
+    warn "No environment provided"
+
+  run "go run ./cmd/pog" attached
+  run in service $environment "npm run dev" attached
+  get "https://api.example.com/status" with header "Accept: application/json" timeout "30s"
+  download "https://example.com/file.zip" to "downloads/file.zip" allow overwrite
+  wait for service at "https://app.example.com/health" to be ready timeout "60s"
+  test connection to "localhost" on port 8080 timeout "5s"
+  ping host "example.com" timeout "3s"
+
+service "api" in "./services/api":
+  repository:
+    url "https://github.com/acme/api.git"
+  build:
+    required true
+    command "npm install && npm run build"
+  health check:
+    type "http"
+    endpoint "http://localhost:8080/health"
+
+orchestrate "full_stack":
+  services ["api"]
+  strategy "sequential"
+  circuit_breaker true
+
+task "resume":
+  orchestrate "full_stack" up starting from "api"
+
+task "maintenance":
+  orchestrate "full_stack" logs service "api"
+  orchestrate "full_stack" update with branch "main"
+  orchestrate "full_stack" recreate with cache "false"
+  orchestrate "full_stack" recreate services ["api"]
