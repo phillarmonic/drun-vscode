@@ -16,7 +16,7 @@ Write and run readable project automation in VS Code. This extension adds syntax
 ## Get started
 
 1. Install this extension.
-2. Install [`xdrun`](https://phillarmonic.github.io/drun/install/) to run Drunfiles and enable language-server features.
+2. Install [`xdrun`](https://phillarmonic.github.io/drun/getting-started/install/) to run Drunfiles and enable language-server features.
 3. Open or create a file ending in `.drun`.
 
 Try a small task:
