@@ -5,6 +5,7 @@
   "version": "1.0.0",
   "publisher": "phillarmonic",
   "license": "MIT",
+  "icon": "images/drun128white.png",
   "main": "./dist/extension.js",
   "engines": {
     "vscode": "^1.85.0"

@@ -23,7 +23,7 @@ try {
 
   mkdirSync(stageExtensionRoot, { recursive: true });
 
-  for (const entry of ["README.md", "LICENSE", "language-configuration.json", "dist", "syntaxes"]) {
+  for (const entry of ["README.md", "LICENSE", "images", "language-configuration.json", "dist", "syntaxes"]) {
     cpSync(path.join(repoRoot, entry), path.join(stageExtensionRoot, entry), { recursive: true });
   }
 
@@ -32,6 +32,7 @@ try {
     files: [
       "dist/**",
       "syntaxes/**",
+      "images/**",
       "language-configuration.json",
       "README.md",
       "LICENSE",
