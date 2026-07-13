@@ -1,4 +1,4 @@
-# Drun Automation Language Support
+# Drun Automation Language Support (With AI features)
 
 <p align="center">
   <img src="images/drun_500_transp.png" width="500" alt="Drun" />
@@ -31,6 +31,14 @@ task "hello":
 
 Run it from your project directory with `xdrun`.
 
+## Teach your AI agents how to use drun
+
+In a hurry? Let your agents work for you. Install the basics skill in your current project with:
+
+```bash
+xdrun cmd:skill install drun-basics
+```
+
 ## Language-server support
 
 When `xdrun` is available on your `PATH`, the extension starts `xdrun cmd:lsp` automatically for `.drun` files. This provides parser-backed diagnostics, keyword completions, and annotation highlighting.
@@ -39,10 +47,10 @@ The extension still provides syntax highlighting when `xdrun` is not installed.
 
 ## Settings
 
-| Setting | Default | Description |
-| --- | --- | --- |
-| `drun.enableLanguageServer` | `true` | Enable or disable automatic language-server startup. |
-| `drun.xdrunPath` | `xdrun` | Path to, or command name for, the `xdrun` executable. |
+| Setting                     | Default | Description                                           |
+| --------------------------- | ------- | ----------------------------------------------------- |
+| `drun.enableLanguageServer` | `true`  | Enable or disable automatic language-server startup.  |
+| `drun.xdrunPath`            | `xdrun` | Path to, or command name for, the `xdrun` executable. |
 
 ## Learn Drun
 
