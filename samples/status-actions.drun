@@ -1,0 +1,5 @@
+version: 2.0
+
+task "status-actions":
+  warn "Short warning spelling"
+  warning "Full warning spelling"

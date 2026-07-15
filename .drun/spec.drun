@@ -19,7 +19,7 @@ project "drun-vscode":
                         host: "github.com"
 
 task "default" means "Show the repository automation commands":
-    info "Available tasks: lint, check, build, ci, set-version, package, prepare-release"
+    info "Available tasks: {available tasks(', ')}"
 
 task "lint" means "Check TypeScript and repository whitespace":
     run "pnpm exec tsc --noEmit -p tsconfig.json"
@@ -48,7 +48,7 @@ task "ci" mode "ci" means "Run the complete CI pipeline":
     success "CI completed successfully"
 
 task "set-version" means "Update the extension manifest version":
-    requires $version as string matching pattern "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    requires $version as string matching semver_optional_v
 
     get json "/version" from "package.json" as $current_version
     check json "/name" in "package.json" equals "drun-language-support"

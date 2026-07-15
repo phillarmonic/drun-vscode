@@ -1,0 +1,35 @@
+{
+  "file": "samples/task-discovery.drun",
+  "assertions": [
+    {
+      "line": 4,
+      "column": 27,
+      "scopes": [
+        "source.drun",
+        "string.quoted.double.drun",
+        "meta.interpolation.drun",
+        "support.function.builtin.drun"
+      ]
+    },
+    {
+      "line": 4,
+      "column": 52,
+      "scopes": [
+        "source.drun",
+        "string.quoted.double.drun",
+        "meta.interpolation.drun",
+        "string.quoted.single.drun"
+      ]
+    },
+    {
+      "line": 5,
+      "column": 24,
+      "scopes": [
+        "source.drun",
+        "string.quoted.double.drun",
+        "meta.interpolation.drun",
+        "support.function.builtin.drun"
+      ]
+    }
+  ]
+}

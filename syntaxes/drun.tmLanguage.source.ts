@@ -125,6 +125,7 @@ const actionTypes = [
   "info",
   "step",
   "warn",
+  "warning",
   "error",
   "success",
   "fail",
@@ -460,6 +461,7 @@ const builtinTypes = [
 const builtinPhrases = [
   "current git commit",
   "current git branch",
+  "available tasks",
   "file exists",
   "dir exists",
   "start progress",
