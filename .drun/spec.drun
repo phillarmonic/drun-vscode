@@ -1,0 +1,82 @@
+# This repository builds Drun's VS Code/TextMate language support with Drun.
+
+version: 2.0
+
+project "drun-vscode":
+    requires tools:
+        git
+        pnpm
+
+    scm: # Declare a specific SCM implementation for easier manipulation
+        git: # Technology
+            github: # Provider
+                drun-vscode: # Repo alias (can be potato if you want to, just for convenience when referencing)
+                    default: https
+                    https: "https://github.com/phillarmonic/drun-vscode.git"
+                    ssh: "git@github.com:phillarmonic/drun-vscode.git"
+                    cli:
+                        repository: "phillarmonic/drun-vscode"
+                        host: "github.com"
+
+task "default" means "Show the repository automation commands":
+    info "Available tasks: {available tasks(', ')}"
+
+task "lint" means "Check TypeScript and repository whitespace":
+    run "pnpm exec tsc --noEmit -p tsconfig.json"
+    run "pnpm exec tsc --noEmit -p tsconfig.grammar.json"
+    run "git diff --check"
+
+task "check" means "Validate the extension manifest and run the test suite":
+    get json "/displayName" from "package.json" as $display_name
+    get json "/version" from "package.json" as $version
+    check json "/name" in "package.json" equals "drun-language-support"
+    check json "/publisher" in "package.json" equals "phillarmonic"
+
+    step "Testing {$display_name} v{$version}"
+    run "pnpm test"
+
+task "build" means "Generate the grammar and compile the extension":
+    run "pnpm run compile"
+
+task "ci" mode "ci" means "Run the complete CI pipeline":
+    step "Lint"
+    call task lint
+    step "Tests and manifest checks"
+    call task check
+    step "Build"
+    call task build
+    success "CI completed successfully"
+
+task "set-version" means "Update the extension manifest version":
+    requires $version as string matching semver_optional_v
+
+    get json "/version" from "package.json" as $current_version
+    check json "/name" in "package.json" equals "drun-language-support"
+    step "Updating extension version {$current_version} to {$version}"
+    update json "/version" in "package.json" to "{$version}" or fail
+    success "Extension version is now {$version}"
+
+task "package" means "Build a VS Code extension package":
+    call task check
+    run "pnpm run package:vsix"
+
+task "prepare-release" means "Prepare and verify a developer-selected release version":
+                                         # Macro for loose semver matching
+    requires $version as string matching semver_optional_v
+
+    # Fail early if CI doesn't meet requirements
+    step "Running CI for release candidate {$version}"
+    call task "ci"
+
+    get json "/version" from "package.json" as $current_version
+    set $release_version to "{$version without prefix 'v'}"
+    git ensure $release_version is newer than latest version from drun-vscode
+
+    if $current_version is "{$release_version}":
+        info "package.json is already set to {$release_version}"
+    else:
+        step "Updating package.json from {$current_version} to {$release_version}"
+
+    update json "/version" in "package.json" to "{$release_version}" or fail
+
+    success "Release {$release_version} is prepared; run xdrun package when you want a local VSIX"

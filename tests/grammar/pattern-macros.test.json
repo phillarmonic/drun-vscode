@@ -1,0 +1,13 @@
+{
+  "file": "samples/pattern-macros.drun",
+  "assertions": [
+    {
+      "line": 4,
+      "column": 42,
+      "scopes": [
+        "source.drun",
+        "storage.type.drun"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+version: 2.0
+
+task "help":
+  info "Available tasks: {available tasks(', ', 'default', 'internal.release')}"
+  info "One per line:\n{available tasks('\\n')}"

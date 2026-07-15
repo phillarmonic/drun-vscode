@@ -1,0 +1,34 @@
+version: 2.0
+
+project "release":
+  scm:
+    git:
+      github:
+        app:
+          default: https
+          https: "https://github.com/example/app.git"
+          cli:
+            repository: "example/app"
+            host: "github.com"
+      generic:
+        php:
+          filesystem: "../php-src"
+          version tags: "php-{version}"
+
+task "latest":
+  git get latest version from php
+    matching tags "php-{version}"
+    in series "8.4"
+    ordered by version
+    as $php_version
+  given $candidate defaults to "8.4.24"
+  if $candidate is older than version "{$php_version}":
+    warn "{$candidate} is behind {$php_version}"
+
+task "release guard":
+  given $candidate defaults to "8.4.24"
+  git ensure $candidate is newer than latest version from php
+  git ensure $candidate is newer than latest version from php
+    using filesystem
+    matching tags "php-{version}"
+    as $latest_version

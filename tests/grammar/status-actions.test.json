@@ -1,0 +1,21 @@
+{
+  "file": "samples/status-actions.drun",
+  "assertions": [
+    {
+      "line": 4,
+      "column": 3,
+      "scopes": [
+        "source.drun",
+        "support.type.action.drun"
+      ]
+    },
+    {
+      "line": 5,
+      "column": 3,
+      "scopes": [
+        "source.drun",
+        "support.type.action.drun"
+      ]
+    }
+  ]
+}

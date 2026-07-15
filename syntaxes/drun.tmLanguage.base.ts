@@ -21,6 +21,7 @@ export const baseRepository: Record<string, TextMateRule> = {
       { include: "#shell-config" },
       { include: "#capture-shell" },
       { include: "#env-conditions" },
+      { include: "#file-value-actions" },
       { include: "#http-actions" },
       { include: "#download-actions" },
       { include: "#network-actions" },
@@ -459,6 +460,86 @@ export const baseRepository: Record<string, TextMateRule> = {
       {
         name: "storage.modifier.drun",
         match: "\\b(content\\s+type|with\\s+body|with\\s+header|with\\s+auth|auth\\s+bearer|auth\\s+basic|timeout|retry|download|upload)\\b"
+      }
+    ]
+  },
+  "file-value-actions": {
+    patterns: [
+      {
+        name: "meta.project-version.check.drun",
+        match:
+          "^(\\s*)(check)(\\s+)(project)(\\s+)(version)(\\s+)(equals|differs\\s+from)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")",
+        captures: {
+          "2": { name: "support.type.action.drun" },
+          "4": { name: "support.constant.domain.drun" },
+          "6": { name: "storage.type.file-value.drun" },
+          "8": { name: "keyword.operator.comparison.drun" },
+          "10": {
+            name: "string.quoted.double.drun",
+            patterns: [{ include: "#interpolation" }]
+          }
+        }
+      },
+      {
+        name: "meta.project-version.update.drun",
+        match:
+          "^(\\s*)(update)(\\s+)(project)(\\s+)(version)(\\s+)(to)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")",
+        captures: {
+          "2": { name: "support.type.action.drun" },
+          "4": { name: "support.constant.domain.drun" },
+          "6": { name: "storage.type.file-value.drun" },
+          "8": { name: "keyword.operator.word.drun" },
+          "10": {
+            name: "string.quoted.double.drun",
+            patterns: [{ include: "#interpolation" }]
+          }
+        }
+      },
+      {
+        name: "meta.file-value.get.drun",
+        match:
+          "^(\\s*)(get)(\\s+)(property|json|yaml|toml|match)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(\\s+)(from)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(\\s+)(as)(\\s+)(\\$[A-Za-z_][A-Za-z0-9_\\-]*)",
+        captures: {
+          "2": { name: "support.type.action.drun" },
+          "4": { name: "storage.type.file-value.drun" },
+          "6": { name: "string.quoted.double.selector.drun" },
+          "8": { name: "keyword.operator.word.drun" },
+          "10": { name: "string.quoted.double.path.drun" },
+          "12": { name: "keyword.operator.word.drun" },
+          "14": { name: "variable.other.drun" }
+        }
+      },
+      {
+        name: "meta.file-value.check.drun",
+        match:
+          "^(\\s*)(check)(\\s+)(property|json|yaml|toml|match)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(\\s+)(in)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(\\s+)(equals|differs\\s+from)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")",
+        captures: {
+          "2": { name: "support.type.action.drun" },
+          "4": { name: "storage.type.file-value.drun" },
+          "6": { name: "string.quoted.double.selector.drun" },
+          "8": { name: "keyword.operator.word.drun" },
+          "10": { name: "string.quoted.double.path.drun" },
+          "12": { name: "keyword.operator.comparison.drun" },
+          "14": { name: "string.quoted.double.drun" }
+        }
+      },
+      {
+        name: "meta.file-value.update.drun",
+        match:
+          "^(\\s*)(update)(\\s+)(property|json|yaml|toml|match)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(\\s+)(in)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(\\s+)(to)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(\\s+)(or)(\\s+)(fail|add)(?:(\\s+)(as)(\\s+)(string|number|boolean))?",
+        captures: {
+          "2": { name: "support.type.action.drun" },
+          "4": { name: "storage.type.file-value.drun" },
+          "6": { name: "string.quoted.double.selector.drun" },
+          "8": { name: "keyword.operator.word.drun" },
+          "10": { name: "string.quoted.double.path.drun" },
+          "12": { name: "keyword.operator.word.drun" },
+          "14": { name: "string.quoted.double.drun" },
+          "16": { name: "keyword.operator.word.drun" },
+          "18": { name: "storage.modifier.drun" },
+          "20": { name: "keyword.operator.word.drun" },
+          "22": { name: "storage.type.drun" }
+        }
       }
     ]
   },

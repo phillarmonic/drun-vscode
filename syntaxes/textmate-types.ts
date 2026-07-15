@@ -1,5 +1,6 @@
 export interface TextMateCaptureRule {
   name: string;
+  patterns?: TextMateRule[];
 }
 
 export interface TextMateRule {

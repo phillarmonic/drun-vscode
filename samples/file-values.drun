@@ -1,0 +1,21 @@
+version: 2.0
+
+task "file-values":
+  get property "pluginVersion" from "gradle.properties" as $plugin_version
+  get json "/version" from "package.json" as $package_version
+  get yaml "chart.appVersion" from "Chart.yaml" as $chart_version
+  get toml "package.version" from "Cargo.toml" as $crate_version
+  get match "(?m)^VERSION=(?P<value>[^\\r\\n]+)$" from "VERSION.txt" as $version
+  check property "pluginVersion" in "gradle.properties" equals "{$version}"
+  check json "/version" in "package.json" differs from "{$previous}"
+  check yaml "chart.version" in "Chart.yaml" equals "2"
+  check toml "package.version" in "Cargo.toml" differs from "1"
+  check match "(?P<value>.+)" in "VERSION" equals "2"
+  update property "pluginVersion" in "gradle.properties" to "2" or fail
+  update json "/version" in "package.json" to "2" or add as string
+  update yaml "chart.version" in "Chart.yaml" to "2" or add as number
+  update toml "package.prerelease" in "Cargo.toml" to "false" or add as boolean
+  update match "(?P<value>.+)" in "VERSION" to "2" or fail
+  check project version equals "{$version}"
+  check project version differs from "{$previous}"
+  update project version to "{$version}"
