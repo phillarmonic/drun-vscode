@@ -1,0 +1,95 @@
+{
+  "file": "samples/scm-registry.drun",
+  "assertions": [
+    {
+      "line": 4,
+      "column": 2,
+      "scopes": ["source.drun", "keyword.declaration.drun"]
+    },
+    {
+      "line": 6,
+      "column": 6,
+      "scopes": ["source.drun", "support.constant.domain.drun"]
+    },
+    {
+      "line": 16,
+      "column": 18,
+      "scopes": ["source.drun", "support.constant.domain.drun"]
+    },
+    {
+      "line": 19,
+      "column": 10,
+      "scopes": ["source.drun", "support.constant.domain.drun"]
+    },
+    {
+      "line": 20,
+      "column": 4,
+      "scopes": ["source.drun", "keyword.operator.word.drun"]
+    },
+    {
+      "line": 22,
+      "column": 4,
+      "scopes": ["source.drun", "keyword.control.drun"]
+    },
+    {
+      "line": 23,
+      "column": 7,
+      "scopes": ["source.drun", "variable.other.drun"]
+    },
+    {
+      "line": 25,
+      "column": 19,
+      "scopes": ["source.drun", "keyword.control.drun"]
+    },
+    {
+      "line": 25,
+      "column": 25,
+      "scopes": ["source.drun", "keyword.control.drun"]
+    },
+    {
+      "line": 25,
+      "column": 30,
+      "scopes": ["source.drun", "keyword.control.drun"]
+    },
+    {
+      "line": 30,
+      "column": 6,
+      "scopes": ["source.drun", "support.type.action.drun"]
+    },
+    {
+      "line": 30,
+      "column": 13,
+      "scopes": ["source.drun", "variable.other.drun"]
+    },
+    {
+      "line": 30,
+      "column": 27,
+      "scopes": ["source.drun", "keyword.control.drun"]
+    },
+    {
+      "line": 30,
+      "column": 38,
+      "scopes": ["source.drun", "support.constant.domain.drun"]
+    },
+    {
+      "line": 32,
+      "column": 4,
+      "scopes": ["source.drun", "keyword.control.drun"]
+    },
+    {
+      "line": 32,
+      "column": 10,
+      "scopes": ["source.drun", "support.constant.domain.drun"]
+    },
+    {
+      "line": 33,
+      "column": 4,
+      "scopes": ["source.drun", "keyword.operator.word.drun"]
+    },
+    {
+      "line": 34,
+      "column": 7,
+      "scopes": ["source.drun", "variable.other.drun"]
+    }
+  ]
+}

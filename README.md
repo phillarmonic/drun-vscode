@@ -52,6 +52,31 @@ The extension still provides syntax highlighting when `xdrun` is not installed.
 | `drun.enableLanguageServer` | `true`  | Enable or disable automatic language-server startup.  |
 | `drun.xdrunPath`            | `xdrun` | Path to, or command name for, the `xdrun` executable. |
 
+## Repository dogfooding
+
+This repository uses [`.drun/spec.drun`](.drun/spec.drun) for its own common
+tasks. The file is also a small, runnable example of JSON file-value operations:
+
+```bash
+xdrun check
+xdrun build
+xdrun ci
+xdrun set-version version=1.0.5
+xdrun prepare-release version=v1.0.5
+```
+
+The `check` and `set-version` tasks demonstrate `get json`, `check json`, and
+`update json` against the extension manifest before using the existing pnpm
+scripts. `prepare-release` is the repeatable release checklist: the developer
+chooses the next major, minor, or patch version, Drun rejects a version that is
+already the latest GitHub tag, updates the manifest when needed, and runs lint,
+tests, and the build through the same `ci` task used by normal development. It
+deliberately does not package the extension, so
+`xdrun package` remains available for quick local VSIX testing.
+
+`prepare-release` accepts the selected version with or without a leading `v`;
+the extension manifest always receives the normalized, unprefixed version.
+
 ## Learn Drun
 
 - [Getting started](https://phillarmonic.github.io/drun/getting-started/)

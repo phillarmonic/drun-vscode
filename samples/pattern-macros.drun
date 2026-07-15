@@ -1,0 +1,4 @@
+version: 2.0
+
+task "prepare-release":
+  requires $version as string matching semver_optional_v

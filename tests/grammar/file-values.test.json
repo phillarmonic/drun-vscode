@@ -16,6 +16,9 @@
     { "line": 16, "column": 9, "scopes": ["source.drun", "meta.file-value.update.drun", "storage.type.file-value.drun"] },
     { "line": 17, "column": 9, "scopes": ["source.drun", "meta.file-value.update.drun", "storage.type.file-value.drun"] },
     { "line": 18, "column": 9, "scopes": ["source.drun", "meta.file-value.update.drun", "storage.type.file-value.drun"] },
+    { "line": 19, "column": 8, "scopes": ["source.drun", "meta.project-version.check.drun", "support.constant.domain.drun"] },
+    { "line": 20, "column": 8, "scopes": ["source.drun", "meta.project-version.check.drun", "support.constant.domain.drun"] },
+    { "line": 21, "column": 9, "scopes": ["source.drun", "meta.project-version.update.drun", "support.constant.domain.drun"] },
 
     { "line": 4, "column": 2, "scopes": ["meta.file-value.get.drun", "support.type.action.drun"] },
     { "line": 4, "column": 16, "scopes": ["meta.file-value.get.drun", "string.quoted.double.selector.drun"] },
@@ -45,6 +48,22 @@
     { "line": 15, "column": 57, "scopes": ["meta.file-value.update.drun", "keyword.operator.word.drun"] },
     { "line": 15, "column": 60, "scopes": ["meta.file-value.update.drun", "storage.type.drun"] },
     { "line": 16, "column": 63, "scopes": ["meta.file-value.update.drun", "storage.type.drun"] },
-    { "line": 17, "column": 72, "scopes": ["meta.file-value.update.drun", "storage.type.drun"] }
+    { "line": 17, "column": 72, "scopes": ["meta.file-value.update.drun", "storage.type.drun"] },
+    { "line": 19, "column": 2, "scopes": ["meta.project-version.check.drun", "support.type.action.drun"] },
+    { "line": 19, "column": 8, "scopes": ["meta.project-version.check.drun", "support.constant.domain.drun"] },
+    { "line": 19, "column": 16, "scopes": ["meta.project-version.check.drun", "storage.type.file-value.drun"] },
+    { "line": 19, "column": 24, "scopes": ["meta.project-version.check.drun", "keyword.operator.comparison.drun"] },
+    { "line": 19, "column": 31, "scopes": ["meta.project-version.check.drun", "string.quoted.double.drun"] },
+    { "line": 19, "column": 33, "scopes": ["string.quoted.double.drun", "meta.interpolation.drun", "variable.other.drun"] },
+    { "line": 20, "column": 24, "scopes": ["meta.project-version.check.drun", "keyword.operator.comparison.drun"] },
+    { "line": 20, "column": 32, "scopes": ["meta.project-version.check.drun", "keyword.operator.comparison.drun"] },
+    { "line": 20, "column": 37, "scopes": ["meta.project-version.check.drun", "string.quoted.double.drun"] },
+    { "line": 20, "column": 39, "scopes": ["string.quoted.double.drun", "meta.interpolation.drun", "variable.other.drun"] },
+    { "line": 21, "column": 2, "scopes": ["meta.project-version.update.drun", "support.type.action.drun"] },
+    { "line": 21, "column": 9, "scopes": ["meta.project-version.update.drun", "support.constant.domain.drun"] },
+    { "line": 21, "column": 17, "scopes": ["meta.project-version.update.drun", "storage.type.file-value.drun"] },
+    { "line": 21, "column": 25, "scopes": ["meta.project-version.update.drun", "keyword.operator.word.drun"] },
+    { "line": 21, "column": 28, "scopes": ["meta.project-version.update.drun", "string.quoted.double.drun"] },
+    { "line": 21, "column": 30, "scopes": ["string.quoted.double.drun", "meta.interpolation.drun", "variable.other.drun"] }
   ]
 }

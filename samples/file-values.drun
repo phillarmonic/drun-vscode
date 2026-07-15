@@ -16,3 +16,6 @@ task "file-values":
   update yaml "chart.version" in "Chart.yaml" to "2" or add as number
   update toml "package.prerelease" in "Cargo.toml" to "false" or add as boolean
   update match "(?P<value>.+)" in "VERSION" to "2" or fail
+  check project version equals "{$version}"
+  check project version differs from "{$previous}"
+  update project version to "{$version}"
