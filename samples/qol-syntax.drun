@@ -1,0 +1,28 @@
+version: 2.0
+
+project "qol-syntax" version "1.0.0":
+  requires tools:
+    go >= "1.23"
+    from tasks:
+      build
+      "integration test"
+
+  git policy:
+    branch:
+      default branches: "main", "release"
+      protected branches: "main", "release"
+      naming: "{type}/{identifier}-{description}"
+      types: "feat", "fix"
+    commit:
+      messages: "{identifier}: {message}"
+      min length: 10
+      ban: "WIP"
+
+task "build":
+  requires tools:
+    from tasks:
+      "integration test"
+    golangci-lint >= "2.12"
+
+task "integration test":
+  info "run integration tests"

@@ -59,7 +59,13 @@
           "include": "#snippet-definition"
         },
         {
+          "include": "#requires-tools"
+        },
+        {
           "include": "#parameter-definition"
+        },
+        {
+          "include": "#git-policy"
         },
         {
           "include": "#dependency-declaration"
@@ -280,6 +286,95 @@
         {
           "name": "keyword.operator.word.drun",
           "match": "\\b(?:as|from|matching|between|of|to)\\b"
+        }
+      ]
+    },
+    "requires-tools": {
+      "patterns": [
+        {
+          "name": "meta.requires-tools.header.drun",
+          "match": "^(\\s*)(requires)(\\s+)(tools)(?=\\s*:)",
+          "captures": {
+            "2": {
+              "name": "keyword.declaration.drun"
+            },
+            "4": {
+              "name": "keyword.declaration.drun"
+            }
+          }
+        },
+        {
+          "name": "meta.requires-tools.source.drun",
+          "match": "^(\\s*)(from)(\\s+)(tasks)(?=\\s*:)",
+          "captures": {
+            "2": {
+              "name": "keyword.operator.word.drun"
+            },
+            "4": {
+              "name": "entity.name.type.import-selector.drun"
+            }
+          }
+        },
+        {
+          "name": "meta.requires-tools.task-ref.drun",
+          "match": "^(\\s{6,})(\"(?:[^\"\\\\]|\\\\.)*\"|[A-Za-z_][A-Za-z0-9_.:-]*)\\s*$",
+          "captures": {
+            "2": {
+              "name": "entity.name.function.task.drun"
+            }
+          }
+        }
+      ]
+    },
+    "git-policy": {
+      "patterns": [
+        {
+          "name": "meta.git-policy.header.drun",
+          "match": "^(\\s*)(git)(\\s+)(policy)(?=\\s*:)",
+          "captures": {
+            "2": {
+              "name": "support.constant.domain.drun"
+            },
+            "4": {
+              "name": "keyword.declaration.drun"
+            }
+          }
+        },
+        {
+          "name": "meta.git-policy.branch-block.drun",
+          "match": "^(\\s*)(branch)(?=\\s*:)",
+          "captures": {
+            "2": {
+              "name": "support.type.property-name.drun"
+            }
+          }
+        },
+        {
+          "name": "meta.git-policy.branch-property.drun",
+          "match": "^(\\s*)(default\\s+branches|protected\\s+branches|naming|types)(?=\\s*:)",
+          "captures": {
+            "2": {
+              "name": "support.type.property-name.drun"
+            }
+          }
+        },
+        {
+          "name": "meta.git-policy.commit-block.drun",
+          "match": "^(\\s*)(commit)(?=\\s*:)",
+          "captures": {
+            "2": {
+              "name": "support.type.property-name.drun"
+            }
+          }
+        },
+        {
+          "name": "meta.git-policy.commit-property.drun",
+          "match": "^(\\s*)(messages|ban|min\\s+length)(?=\\s*:)",
+          "captures": {
+            "2": {
+              "name": "support.type.property-name.drun"
+            }
+          }
         }
       ]
     },

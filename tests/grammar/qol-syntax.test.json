@@ -1,0 +1,86 @@
+{
+  "file": "samples/qol-syntax.drun",
+  "assertions": [
+    {
+      "line": 4,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.requires-tools.header.drun",
+        "keyword.declaration.drun"
+      ]
+    },
+    {
+      "line": 6,
+      "column": 4,
+      "scopes": [
+        "source.drun",
+        "meta.requires-tools.source.drun",
+        "keyword.operator.word.drun"
+      ]
+    },
+    {
+      "line": 7,
+      "column": 6,
+      "scopes": [
+        "source.drun",
+        "meta.requires-tools.task-ref.drun",
+        "entity.name.function.task.drun"
+      ]
+    },
+    {
+      "line": 8,
+      "column": 7,
+      "scopes": [
+        "source.drun",
+        "meta.requires-tools.task-ref.drun",
+        "entity.name.function.task.drun"
+      ]
+    },
+    {
+      "line": 10,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.git-policy.header.drun",
+        "support.constant.domain.drun"
+      ]
+    },
+    {
+      "line": 12,
+      "column": 6,
+      "scopes": [
+        "source.drun",
+        "meta.git-policy.branch-property.drun",
+        "support.type.property-name.drun"
+      ]
+    },
+    {
+      "line": 13,
+      "column": 6,
+      "scopes": [
+        "source.drun",
+        "meta.git-policy.branch-property.drun",
+        "support.type.property-name.drun"
+      ]
+    },
+    {
+      "line": 19,
+      "column": 6,
+      "scopes": [
+        "source.drun",
+        "meta.git-policy.commit-property.drun",
+        "support.type.property-name.drun"
+      ]
+    },
+    {
+      "line": 23,
+      "column": 9,
+      "scopes": [
+        "source.drun",
+        "meta.requires-tools.source.drun",
+        "entity.name.type.import-selector.drun"
+      ]
+    }
+  ]
+}
