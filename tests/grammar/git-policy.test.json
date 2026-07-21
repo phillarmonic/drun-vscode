@@ -6,7 +6,7 @@
       "column": 2,
       "scopes": [
         "source.drun",
-        "meta.git.policy.drun",
+        "meta.git-policy.header.drun",
         "support.constant.domain.drun"
       ]
     },
@@ -15,8 +15,8 @@
       "column": 6,
       "scopes": [
         "source.drun",
-        "meta.git.policy.drun",
-        "keyword.declaration.config.drun"
+        "meta.git-policy.header.drun",
+        "keyword.declaration.drun"
       ]
     },
     {
@@ -24,17 +24,14 @@
       "column": 4,
       "scopes": [
         "source.drun",
-        "meta.git.policy.section.drun",
-        "support.constant.domain.drun"
+        "meta.git-policy.branch-block.drun",
+        "support.type.property-name.drun"
       ]
     },
     {
       "line": 6,
       "column": 4,
-      "scopes": [
-        "source.drun",
-        "support.type.property-name.drun"
-      ]
+      "scopes": ["source.drun", "meta.git-policy.branch-property.drun"]
     },
     {
       "line": 13,

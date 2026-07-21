@@ -108,7 +108,8 @@
       "column": 2,
       "scopes": [
         "source.drun",
-        "keyword.declaration.parameter.drun"
+        "meta.requires-tools.header.drun",
+        "keyword.declaration.drun"
       ]
     },
     {

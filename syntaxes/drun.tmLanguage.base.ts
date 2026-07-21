@@ -18,7 +18,6 @@ export const baseRepository: Record<string, TextMateRule> = {
       { include: "#include-statement" },
       { include: "#call-task" },
       { include: "#lifecycle-hooks" },
-      { include: "#git-policy" },
       { include: "#provisioning-sources" },
       { include: "#shell-config" },
       { include: "#capture-shell" },
@@ -168,19 +167,22 @@ export const baseRepository: Record<string, TextMateRule> = {
         }
       },
       {
-        name: "meta.requires-tools.source.drun",
-        match: "^(\\s*)(from)(\\s+)(tasks)(?=\\s*:)",
-        captures: {
+        begin: "^(\\s*)(from)(\\s+)(tasks)(?=\\s*:)",
+        beginCaptures: {
+          "0": { name: "meta.requires-tools.source.drun" },
           "2": { name: "keyword.operator.word.drun" },
           "4": { name: "entity.name.type.import-selector.drun" }
-        }
-      },
-      {
-        name: "meta.requires-tools.task-ref.drun",
-        match: "^(\\s{6,})(\"(?:[^\"\\\\]|\\\\.)*\"|[A-Za-z_][A-Za-z0-9_.:-]*)\\s*$",
-        captures: {
-          "2": { name: "entity.name.function.task.drun" }
-        }
+        },
+        end: "^(?!\\1\\s{2})",
+        patterns: [
+          {
+            name: "meta.requires-tools.task-ref.drun",
+            match: "^(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\"|[A-Za-z_][A-Za-z0-9_.:-]*)\\s*$",
+            captures: {
+              "2": { name: "entity.name.function.task.drun" }
+            }
+          }
+        ]
       }
     ]
   },
@@ -221,6 +223,20 @@ export const baseRepository: Record<string, TextMateRule> = {
         captures: {
           "2": { name: "support.type.property-name.drun" }
         }
+      },
+      {
+        name: "meta.git.validate.drun",
+        match:
+          "^(\\s*)(git)(\\s+)(validate)(\\s+)(branch(?:[_ ]name)?|commit(?:[_ ]message)?|signed(?:[_ ]commits)?|all)\\b",
+        captures: {
+          "2": { name: "support.constant.domain.drun" },
+          "4": { name: "support.type.action.drun" },
+          "6": { name: "support.constant.domain.drun" }
+        }
+      },
+      {
+        name: "storage.modifier.drun",
+        match: "^(\\s*)(extract\\s+identifier\\s+from\\s+branch|enforce\\s+signed\\s+commits)\\b"
       }
     ]
   },
@@ -849,43 +865,6 @@ export const baseRepository: Record<string, TextMateRule> = {
       {
         name: "storage.modifier.drun",
         match: "\\bprovision\\b"
-      }
-    ]
-  },
-  "git-policy": {
-    patterns: [
-      {
-        name: "meta.git.policy.drun",
-        match: "^(\\s*)(git)(\\s+)(policy)(?=\\s*:)",
-        captures: {
-          "2": { name: "support.constant.domain.drun" },
-          "4": { name: "keyword.declaration.config.drun" }
-        }
-      },
-      {
-        name: "meta.git.validate.drun",
-        match:
-          "^(\\s*)(git)(\\s+)(validate)(\\s+)(branch(?:[_ ]name)?|commit(?:[_ ]message)?|signed(?:[_ ]commits)?|all)\\b",
-        captures: {
-          "2": { name: "support.constant.domain.drun" },
-          "4": { name: "support.type.action.drun" },
-          "6": { name: "support.constant.domain.drun" }
-        }
-      },
-      {
-        name: "meta.git.policy.section.drun",
-        match: "^(\\s*)(branch|commit)(?=\\s*:)",
-        captures: {
-          "2": { name: "support.constant.domain.drun" }
-        }
-      },
-      {
-        name: "support.type.property-name.drun",
-        match: "^(\\s*)(default\\s+branches|naming|types|messages|ban|min\\s+length)(?=\\s*:)"
-      },
-      {
-        name: "storage.modifier.drun",
-        match: "^(\\s*)(extract\\s+identifier\\s+from\\s+branch|enforce\\s+signed\\s+commits)\\b"
       }
     ]
   },
