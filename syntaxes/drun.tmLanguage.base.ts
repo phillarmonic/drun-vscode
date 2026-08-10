@@ -23,6 +23,7 @@ export const baseRepository: Record<string, TextMateRule> = {
       { include: "#capture-shell" },
       { include: "#env-conditions" },
       { include: "#file-value-actions" },
+      { include: "#changelog-actions" },
       { include: "#http-actions" },
       { include: "#download-actions" },
       { include: "#network-actions" },
@@ -628,6 +629,31 @@ export const baseRepository: Record<string, TextMateRule> = {
       }
     ]
   },
+  "changelog-actions": {
+    patterns: [
+      {
+        name: "meta.changelog.promote.drun",
+        match:
+          "^(\\s*)(promote)(\\s+)(changelog)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(\\s+)(to)(\\s+)(version)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(?:(\\s+)(on)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\"))?",
+        captures: {
+          "2": { name: "support.type.action.drun" },
+          "4": { name: "support.constant.domain.drun" },
+          "6": {
+            name: "string.quoted.double.path.drun",
+            patterns: [{ include: "#interpolation" }]
+          },
+          "8": { name: "keyword.operator.word.drun" },
+          "10": { name: "keyword.operator.word.drun" },
+          "12": {
+            name: "string.quoted.double.drun",
+            patterns: [{ include: "#interpolation" }]
+          },
+          "14": { name: "keyword.operator.word.drun" },
+          "16": { name: "string.quoted.double.date.drun" }
+        }
+      }
+    ]
+  },
   "download-actions": {
     patterns: [
       {
@@ -648,6 +674,26 @@ export const baseRepository: Record<string, TextMateRule> = {
   },
   "network-actions": {
     patterns: [
+      {
+        name: "meta.wait.duration.drun",
+        match: "^(\\s*)(wait)(\\s+)(\\d+(?:\\.\\d+)?)(\\s+)(seconds?|minutes?|hours?)\\b",
+        captures: {
+          "2": { name: "support.type.action.drun" },
+          "4": { name: "constant.numeric.drun" },
+          "6": { name: "storage.type.time-unit.drun" }
+        }
+      },
+      {
+        name: "meta.wait.duration.variable.drun",
+        match: "^(\\s*)(wait)(\\s+)(\\{)(\\$?[A-Za-z_][A-Za-z0-9_.-]*)(\\})(\\s+)(seconds?|minutes?|hours?)\\b",
+        captures: {
+          "2": { name: "support.type.action.drun" },
+          "4": { name: "punctuation.section.interpolation.begin.drun" },
+          "5": { name: "variable.other.drun" },
+          "6": { name: "punctuation.section.interpolation.end.drun" },
+          "8": { name: "storage.type.time-unit.drun" }
+        }
+      },
       {
         name: "meta.network.wait.drun",
         match: "^(\\s*)(wait)(\\s+)(for)(\\s+)(service)(\\s+)(at)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(\\s+)(to)(\\s+)(be)(\\s+)(ready)",
