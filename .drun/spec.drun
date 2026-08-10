@@ -2,7 +2,7 @@
 
 version: 2.0
 
-project "drun-vscode":
+project "drun-vscode" version "1.4.0":
     requires tools:
         git
         pnpm
@@ -78,5 +78,9 @@ task "prepare-release" means "Prepare and verify a developer-selected release ve
         step "Updating package.json from {$current_version} to {$release_version}"
 
     update json "/version" in "package.json" to "{$release_version}" or fail
+
+    step "Promoting unreleased changelog entries to {$release_version}"
+    promote changelog "CHANGELOG.md" to version "{$release_version}"
+    update project version to "{$release_version}"
 
     success "Release {$release_version} is prepared; run xdrun package when you want a local VSIX"

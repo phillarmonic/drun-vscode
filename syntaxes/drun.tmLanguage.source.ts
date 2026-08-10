@@ -180,6 +180,7 @@ const actionTypes = [
   "detect",
   "search",
   "update",
+  "promote",
   "restart",
   "orchestrate",
   "execute",
@@ -191,6 +192,7 @@ const actionTypes = [
 const domainConstants = [
   "drun",
   "drunhub",
+  "changelog",
   "setup",
   "teardown",
   "docker",
