@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added syntax highlighting for the `docker network "<name>" [not] exists` condition in `if`/`when` statements (`meta.condition.docker.network.drun`). The new `docker-conditions` grammar section is structured to host future `docker <resource>` condition variants (containers, images, volumes).
+
 ### Changed
 
 ### Deprecated

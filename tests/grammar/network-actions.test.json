@@ -80,6 +80,69 @@
         "meta.wait.duration.variable.drun",
         "support.type.action.drun"
       ]
+    },
+    {
+      "line": 13,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "meta.network.port-check.drun",
+        "support.type.action.drun"
+      ]
+    },
+    {
+      "line": 14,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "meta.condition.port.drun",
+        "keyword.control.drun"
+      ]
+    },
+    {
+      "line": 14,
+      "column": 10,
+      "scopes": [
+        "source.drun",
+        "meta.condition.port.drun",
+        "support.constant.domain.drun"
+      ]
+    },
+    {
+      "line": 14,
+      "column": 15,
+      "scopes": [
+        "source.drun",
+        "meta.condition.port.drun",
+        "constant.numeric.drun"
+      ]
+    },
+    {
+      "line": 14,
+      "column": 50,
+      "scopes": [
+        "source.drun",
+        "meta.condition.port.drun",
+        "support.constant.domain.drun"
+      ]
+    },
+    {
+      "line": 18,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "meta.condition.port.drun",
+        "keyword.control.drun"
+      ]
+    },
+    {
+      "line": 18,
+      "column": 33,
+      "scopes": [
+        "source.drun",
+        "meta.condition.port.drun",
+        "keyword.control.drun"
+      ]
     }
   ]
 }

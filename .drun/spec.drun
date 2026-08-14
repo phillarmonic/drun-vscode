@@ -2,7 +2,7 @@
 
 version: 2.0
 
-project "drun-vscode" version "1.4.0":
+project "drun-vscode" version "1.5.0":
     requires tools:
         git
         pnpm
