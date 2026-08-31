@@ -1,11 +1,10 @@
 import * as vscode from "vscode";
 import { LanguageClient, type LanguageClientOptions, type ServerOptions } from "vscode-languageclient/node";
 import type { ExtensionServices } from "../core/services";
-import { commandExists } from "../runtime/availability";
+import { resolveCommand } from "../runtime/availability";
 import { isLanguageServerEnabled, resolveXdrunCommand } from "../runtime/config";
 
-export function createClient(services: ExtensionServices): LanguageClient {
-  const command = resolveXdrunCommand(services);
+export function createClient(services: ExtensionServices, command: string): LanguageClient {
 
   const serverOptions: ServerOptions = {
     command,
@@ -37,15 +36,24 @@ export async function restartClient(services: ExtensionServices): Promise<void> 
   }
 
   const command = resolveXdrunCommand(services);
-  if (!(await commandExists(command))) {
-    services.outputChannel.appendLine(`Skipping Drun language server startup because '${command}' is unavailable.`);
+  const resolved = await resolveCommand(command);
+  if (!resolved) {
+    services.outputChannel.appendLine(
+      `Skipping Drun language server startup because '${command}' could not be found. ` +
+        `Searched PATH, well-known install locations, and the login shell. ` +
+        `Install drun (https://github.com/phillarmonic/drun#install), set 'drun.xdrunPath' to the xdrun binary, ` +
+        `or restart the editor so it picks up PATH changes (required on Windows after installing).`
+    );
     return;
   }
+  if (resolved !== command) {
+    services.outputChannel.appendLine(`Resolved '${command}' to '${resolved}'.`);
+  }
 
-  const nextClient = createClient(services);
+  const nextClient = createClient(services, resolved);
   services.client = nextClient;
   await nextClient.start();
-  services.outputChannel.appendLine(`Started Drun language server using '${command} cmd:lsp'.`);
+  services.outputChannel.appendLine(`Started Drun language server using '${resolved} cmd:lsp'.`);
 }
 
 export function didAffectLanguageServerConfiguration(event: vscode.ConfigurationChangeEvent): boolean {
