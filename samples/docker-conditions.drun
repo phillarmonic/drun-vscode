@@ -1,0 +1,13 @@
+version: 2.0
+
+task "docker-conditions":
+  if docker network "proxy" exists:
+    info "Reusing the existing proxy network"
+  else:
+    call task "create-proxy-network"
+  if docker network "{$app_network}" not exists:
+    warn "Network {$app_network} is missing"
+  when docker network "legacy-bridge" exists:
+    info "Attaching to the legacy network"
+  otherwise:
+    info "Using the default bridge"

@@ -1,0 +1,77 @@
+{
+  "file": "samples/docker-conditions.drun",
+  "assertions": [
+    {
+      "line": 4,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.condition.docker.network.drun",
+        "keyword.control.drun"
+      ]
+    },
+    {
+      "line": 4,
+      "column": 5,
+      "scopes": [
+        "source.drun",
+        "meta.condition.docker.network.drun",
+        "support.constant.domain.drun"
+      ]
+    },
+    {
+      "line": 4,
+      "column": 12,
+      "scopes": [
+        "source.drun",
+        "meta.condition.docker.network.drun",
+        "support.constant.domain.drun"
+      ]
+    },
+    {
+      "line": 4,
+      "column": 21,
+      "scopes": [
+        "source.drun",
+        "meta.condition.docker.network.drun",
+        "string.quoted.double.drun"
+      ]
+    },
+    {
+      "line": 4,
+      "column": 29,
+      "scopes": [
+        "source.drun",
+        "meta.condition.docker.network.drun",
+        "keyword.control.drun"
+      ]
+    },
+    {
+      "line": 8,
+      "column": 37,
+      "scopes": [
+        "source.drun",
+        "meta.condition.docker.network.drun",
+        "keyword.control.drun"
+      ]
+    },
+    {
+      "line": 8,
+      "column": 41,
+      "scopes": [
+        "source.drun",
+        "meta.condition.docker.network.drun",
+        "keyword.control.drun"
+      ]
+    },
+    {
+      "line": 10,
+      "column": 2,
+      "scopes": [
+        "source.drun",
+        "meta.condition.docker.network.drun",
+        "keyword.control.drun"
+      ]
+    }
+  ]
+}

@@ -10,3 +10,10 @@ task "network-actions":
     ping host "example.com" timeout "3s"
     wait 5 seconds
     wait {$backoff} minutes
+    check if port 5432 is open on "localhost"
+    if port 5432 is open on "localhost" with timeout "2s":
+      info "PostgreSQL is already running"
+    else:
+      info "PostgreSQL is not running"
+    when port {$redis_port} is not open on "localhost":
+      info "Redis is down"

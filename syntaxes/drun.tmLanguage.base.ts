@@ -13,6 +13,7 @@ export const baseRepository: Record<string, TextMateRule> = {
       { include: "#git-policy" },
       { include: "#dependency-declaration" },
       { include: "#variable-declaration" },
+      { include: "#docker-conditions" },
       { include: "#control-flow" },
       { include: "#detection-conditions" },
       { include: "#include-statement" },
@@ -24,6 +25,7 @@ export const baseRepository: Record<string, TextMateRule> = {
       { include: "#env-conditions" },
       { include: "#file-value-actions" },
       { include: "#changelog-actions" },
+      { include: "#open-actions" },
       { include: "#http-actions" },
       { include: "#download-actions" },
       { include: "#network-actions" },
@@ -480,6 +482,23 @@ export const baseRepository: Record<string, TextMateRule> = {
         }
       },
       {
+        name: "meta.condition.port.drun",
+        match: "^(\\s*)(if|when)(\\s+)(port)(\\s+)(\\d+|\\{[^}]+\\})(\\s+)(is)(?:(\\s+)(not))?(\\s+)(open)(\\s+)(on)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\"|\\{[^}]+\\})(?:(\\s+)(with)(\\s+)(timeout)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\"|\\{[^}]+\\}))?",
+        captures: {
+          "2": { name: "keyword.control.drun" },
+          "4": { name: "support.constant.domain.drun" },
+          "6": { name: "constant.numeric.drun" },
+          "8": { name: "keyword.control.drun" },
+          "10": { name: "keyword.control.drun" },
+          "12": { name: "support.constant.domain.drun" },
+          "14": { name: "keyword.operator.word.drun" },
+          "16": { name: "string.quoted.double.drun" },
+          "18": { name: "keyword.operator.word.drun" },
+          "20": { name: "support.constant.domain.drun" },
+          "22": { name: "string.quoted.double.drun" }
+        }
+      },
+      {
         name: "meta.control.statement.drun",
         match: "^(\\s*)(if|when|otherwise|else|try|catch|finally)(?=\\b)",
         captures: {
@@ -529,6 +548,27 @@ export const baseRepository: Record<string, TextMateRule> = {
         captures: {
           "1": { name: "support.constant.domain.drun" },
           "3": { name: "keyword.control.drun" }
+        }
+      }
+    ]
+  },
+  // Docker resource conditions: `if|when docker <resource> "<name>" [not] exists:`.
+  // Only `network` exists upstream today; future resources (container, image,
+  // volume, ...) extend the resource group below and may add their own
+  // meta.condition.docker.<resource>.drun patterns alongside it.
+  "docker-conditions": {
+    patterns: [
+      {
+        name: "meta.condition.docker.network.drun",
+        match:
+          "^(\\s*)(if|when)(\\s+)(docker)(\\s+)(network)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\"|\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_\\-]*)(?:(\\s+)(not))?(\\s+)(exists)\\b",
+        captures: {
+          "2": { name: "keyword.control.drun" },
+          "4": { name: "support.constant.domain.drun" },
+          "6": { name: "support.constant.domain.drun" },
+          "8": { name: "string.quoted.double.drun" },
+          "10": { name: "keyword.control.drun" },
+          "12": { name: "keyword.control.drun" }
         }
       }
     ]
@@ -654,6 +694,22 @@ export const baseRepository: Record<string, TextMateRule> = {
       }
     ]
   },
+  "open-actions": {
+    patterns: [
+      {
+        name: "meta.open.url.drun",
+        match: "^(\\s*)(open)(\\s+)(url)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")",
+        captures: {
+          "2": { name: "support.type.action.drun" },
+          "4": { name: "support.constant.domain.drun" },
+          "6": {
+            name: "string.quoted.double.drun",
+            patterns: [{ include: "#interpolation" }]
+          }
+        }
+      }
+    ]
+  },
   "download-actions": {
     patterns: [
       {
@@ -719,6 +775,20 @@ export const baseRepository: Record<string, TextMateRule> = {
           "10": { name: "keyword.operator.word.drun" },
           "12": { name: "support.constant.domain.drun" },
           "14": { name: "constant.numeric.drun" }
+        }
+      },
+      {
+        name: "meta.network.port-check.drun",
+        match: "^(\\s*)(check)(\\s+)(if)(\\s+)(port)(\\s+)(\\d+)(\\s+)(is)(\\s+)(open)(\\s+)(on)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")",
+        captures: {
+          "2": { name: "support.type.action.drun" },
+          "4": { name: "keyword.control.drun" },
+          "6": { name: "support.constant.domain.drun" },
+          "8": { name: "constant.numeric.drun" },
+          "10": { name: "keyword.control.drun" },
+          "12": { name: "support.constant.domain.drun" },
+          "14": { name: "keyword.operator.word.drun" },
+          "16": { name: "string.quoted.double.drun" }
         }
       },
       {

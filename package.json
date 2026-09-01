@@ -2,7 +2,7 @@
   "name": "drun-language-support",
   "displayName": "Drun Automation Language Support",
   "description": "Syntax highlighting and editor support for the Drun automation language.",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "publisher": "phillarmonic",
   "license": "MIT",
   "icon": "images/drun128white.png",
@@ -42,7 +42,7 @@
     "@types/node": "^24.0.10",
     "@types/vscode": "^1.85.0",
     "esbuild": "^0.28.1",
-    "typescript": "^5.8.3",
+    "typescript": "^7.0.2",
     "vscode-languageclient": "^9.0.1",
     "vscode-oniguruma": "^2.0.1",
     "vscode-textmate": "^9.2.0"
