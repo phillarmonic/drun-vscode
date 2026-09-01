@@ -8,6 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [1.5.0] - 2026-09-01
+
+### Added
+
 - Added syntax highlighting for the `docker network "<name>" [not] exists` condition in `if`/`when` statements (`meta.condition.docker.network.drun`). The new `docker-conditions` grammar section is structured to host future `docker <resource>` condition variants (containers, images, volumes).
 
 ### Changed
@@ -38,5 +52,6 @@ Upstream support for Drun v2.27
 
 ### Security
 
-[Unreleased]: https://github.com/phillarmonic/drun-vscode/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/phillarmonic/drun-vscode/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/phillarmonic/drun-vscode/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/phillarmonic/drun-vscode/compare/v1.2.0...v1.4.0
