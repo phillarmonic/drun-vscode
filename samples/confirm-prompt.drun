@@ -1,0 +1,20 @@
+version: 2.0
+
+# confirm and prompt interactive input statements
+
+task "gate":
+  confirm "Deploy to production?"
+
+task "migrate":
+  confirm "Run database migrations?" as $migrate
+  if $migrate is "true":
+    info "Running database migrations"
+
+task "cleanup":
+  confirm "Delete the build cache?" defaults to "no" as $clean
+
+task "environment":
+  prompt "Which environment?" as $environment
+
+task "release":
+  prompt "Release notes for {$target}?" defaults to "n/a" as $notes

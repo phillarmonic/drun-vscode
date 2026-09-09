@@ -1,0 +1,75 @@
+{
+  "file": "samples/confirm-prompt.drun",
+  "assertions": [
+    {
+      "line": 6,
+      "column": 3,
+      "scopes": ["source.drun", "meta.confirm.drun", "support.type.action.drun"]
+    },
+    {
+      "line": 6,
+      "column": 11,
+      "scopes": ["source.drun", "meta.confirm.drun", "string.quoted.double.drun"]
+    },
+    {
+      "line": 9,
+      "column": 3,
+      "scopes": ["source.drun", "meta.confirm.drun", "support.type.action.drun"]
+    },
+    {
+      "line": 9,
+      "column": 38,
+      "scopes": ["source.drun", "meta.confirm.drun", "keyword.operator.word.drun"]
+    },
+    {
+      "line": 9,
+      "column": 41,
+      "scopes": ["source.drun", "meta.confirm.drun", "variable.other.drun"]
+    },
+    {
+      "line": 14,
+      "column": 3,
+      "scopes": ["source.drun", "meta.confirm.drun", "support.type.action.drun"]
+    },
+    {
+      "line": 14,
+      "column": 37,
+      "scopes": ["source.drun", "meta.confirm.drun", "keyword.operator.word.drun"]
+    },
+    {
+      "line": 14,
+      "column": 49,
+      "scopes": ["source.drun", "meta.confirm.drun", "string.quoted.double.drun"]
+    },
+    {
+      "line": 14,
+      "column": 57,
+      "scopes": ["source.drun", "meta.confirm.drun", "variable.other.drun"]
+    },
+    {
+      "line": 17,
+      "column": 3,
+      "scopes": ["source.drun", "meta.prompt.drun", "support.type.action.drun"]
+    },
+    {
+      "line": 17,
+      "column": 34,
+      "scopes": ["source.drun", "meta.prompt.drun", "variable.other.drun"]
+    },
+    {
+      "line": 20,
+      "column": 3,
+      "scopes": ["source.drun", "meta.prompt.drun", "support.type.action.drun"]
+    },
+    {
+      "line": 20,
+      "column": 30,
+      "scopes": ["source.drun", "meta.prompt.drun", "variable.other.drun"]
+    },
+    {
+      "line": 20,
+      "column": 62,
+      "scopes": ["source.drun", "meta.prompt.drun", "variable.other.drun"]
+    }
+  ]
+}

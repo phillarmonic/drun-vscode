@@ -160,6 +160,8 @@ const actionTypes = [
   "rollback",
   "wait",
   "open",
+  "confirm",
+  "prompt",
   "ping",
   "test",
   "expect",
