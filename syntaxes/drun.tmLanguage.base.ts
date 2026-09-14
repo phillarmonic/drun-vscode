@@ -29,6 +29,7 @@ export const baseRepository: Record<string, TextMateRule> = {
       { include: "#http-actions" },
       { include: "#download-actions" },
       { include: "#network-actions" },
+      { include: "#interactive-actions" },
       { include: "#orchestration" }
     ]
   },
@@ -803,6 +804,48 @@ export const baseRepository: Record<string, TextMateRule> = {
       {
         name: "storage.modifier.drun",
         match: "\\btimeout\\b"
+      }
+    ]
+  },
+  "interactive-actions": {
+    patterns: [
+      {
+        name: "meta.confirm.drun",
+        match: "^(\\s*)(confirm)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(?:(\\s+)(defaults)(\\s+)(to)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\"))?(?:(\\s+)(as)(\\s+)(\\$[A-Za-z_][A-Za-z0-9_\\-]*))?",
+        captures: {
+          "2": { name: "support.type.action.drun" },
+          "4": {
+            name: "string.quoted.double.drun",
+            patterns: [{ include: "#interpolation" }]
+          },
+          "6": { name: "keyword.operator.word.drun" },
+          "8": { name: "keyword.operator.word.drun" },
+          "10": {
+            name: "string.quoted.double.drun",
+            patterns: [{ include: "#interpolation" }]
+          },
+          "12": { name: "keyword.operator.word.drun" },
+          "14": { name: "variable.other.drun" }
+        }
+      },
+      {
+        name: "meta.prompt.drun",
+        match: "^(\\s*)(prompt)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\")(?:(\\s+)(defaults)(\\s+)(to)(\\s+)(\"(?:[^\"\\\\]|\\\\.)*\"))?(?:(\\s+)(as)(\\s+)(\\$[A-Za-z_][A-Za-z0-9_\\-]*))?",
+        captures: {
+          "2": { name: "support.type.action.drun" },
+          "4": {
+            name: "string.quoted.double.drun",
+            patterns: [{ include: "#interpolation" }]
+          },
+          "6": { name: "keyword.operator.word.drun" },
+          "8": { name: "keyword.operator.word.drun" },
+          "10": {
+            name: "string.quoted.double.drun",
+            patterns: [{ include: "#interpolation" }]
+          },
+          "12": { name: "keyword.operator.word.drun" },
+          "14": { name: "variable.other.drun" }
+        }
       }
     ]
   },
