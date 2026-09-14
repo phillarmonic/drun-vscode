@@ -432,8 +432,11 @@ const domainConstants = [
 
 const builtinTypes = [
   "string",
+  "strings",
   "number",
+  "numbers",
   "boolean",
+  "booleans",
   "list",
   "json",
   "xml",
@@ -472,6 +475,7 @@ const builtinPhrases = [
   "start timer",
   "stop timer",
   "show elapsed time",
+  "now.format",
   "compose_cmd",
   "docker compose command",
   "docker compose status",

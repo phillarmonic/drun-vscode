@@ -18,6 +18,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+## [1.6.0] - 2026-09-03
+
+### Added
+Support for Drun 2.29
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 ## [1.5.0] - 2026-09-01
 
 ### Added
@@ -52,6 +67,7 @@ Upstream support for Drun v2.27
 
 ### Security
 
-[Unreleased]: https://github.com/phillarmonic/drun-vscode/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/phillarmonic/drun-vscode/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/phillarmonic/drun-vscode/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/phillarmonic/drun-vscode/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/phillarmonic/drun-vscode/compare/v1.2.0...v1.4.0

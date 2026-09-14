@@ -1760,7 +1760,7 @@
         },
         {
           "name": "support.function.builtin.drun",
-          "match": "\\b(?:current git commit|current git branch|available tasks|file exists|dir exists|start progress|update progress|finish progress|start timer|stop timer|show elapsed time|compose_cmd|docker compose command|docker compose status|dns_resolve|dns_check|dns_validate)\\b"
+          "match": "\\b(?:current git commit|current git branch|available tasks|file exists|dir exists|start progress|update progress|finish progress|start timer|stop timer|show elapsed time|now\\.format|compose_cmd|docker compose command|docker compose status|dns_resolve|dns_check|dns_validate)\\b"
         },
         {
           "name": "support.function.builtin.drun",
@@ -1804,7 +1804,7 @@
       "patterns": [
         {
           "name": "storage.type.drun",
-          "match": "\\b(?:string|number|boolean|list|json|xml|http|https|docker|git|kubernetes|namespace|network|directory|file|service|container|image|repository|branch|url|email|uuid|semver|semver_optional_v|semver_extended|docker_tag)\\b"
+          "match": "\\b(?:string|strings|number|numbers|boolean|booleans|list|json|xml|http|https|docker|git|kubernetes|namespace|network|directory|file|service|container|image|repository|branch|url|email|uuid|semver|semver_optional_v|semver_extended|docker_tag)\\b"
         }
       ]
     },
