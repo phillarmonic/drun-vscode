@@ -67,7 +67,6 @@ Upstream support for Drun v2.27
 
 ### Security
 
-[Unreleased]: https://github.com/phillarmonic/drun-vscode/compare/v1.6.0...HEAD
-[1.6.0]: https://github.com/phillarmonic/drun-vscode/compare/v1.5.0...v1.6.0
+[Unreleased]: https://github.com/phillarmonic/drun-vscode/compare/v1.5.0...HEAD
 [1.5.0]: https://github.com/phillarmonic/drun-vscode/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/phillarmonic/drun-vscode/compare/v1.2.0...v1.4.0
